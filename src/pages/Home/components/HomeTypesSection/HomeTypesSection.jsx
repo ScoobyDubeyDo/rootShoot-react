@@ -11,14 +11,13 @@ export const HomeTypesSection = () => {
         (async () => {
             try {
                 const res = await axios.get("/api/categories");
-                console.log(res);
                 if (res.status === 200) {
                     setCategories(
                         faker.random.arrayElements(res.data.categories, 4)
                     );
                 }
             } catch (err) {
-                console.log(err);
+                console.log("Error while getting categories", err);
             }
         })();
     }, []);

@@ -14,7 +14,7 @@ const ProductProvider = ({ children }) => {
                     setProducts(res.data.products);
                 }
             } catch (err) {
-                console.log(err);
+                console.log("Error while getting products", err);
             }
         })();
     }, []);

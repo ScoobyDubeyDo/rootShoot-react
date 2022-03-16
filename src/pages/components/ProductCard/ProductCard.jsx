@@ -33,14 +33,6 @@ export const ProductCard = ({
                         </>
                     )}
                 </div>
-
-                {/* {
-                    <dir className="card-badge-yellow">
-                        {rating}
-                        &nbsp;
-                        <FaStar/>
-                    </dir>
-                } */}
                 <img
                     src={imgUrl}
                     alt={title}
