@@ -1,0 +1,72 @@
+:root {
+    --appbar-height: 4.5rem;
+    --primary-bg-color: var(--green-100);
+    --secondary-bg-color: var(--light);
+    --primary-text-color: var(--dark);
+    --accent-color: var(--green-400);
+    --primary-color: var(--green-600);
+    --transition: all 0.3s ease-in-out;
+    background-color: var(--secondary-bg-color);
+    color: var(--primary-text-color);
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 0.3rem;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--primary-bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 25px;
+}
+
+.rootShoot-margin-center {
+    display: block;
+    margin: 0 auto;
+}
+
+.rootShoot-full-width {
+    width: 100%;
+}
+
+.rootShoot-text-align-justify {
+    text-align: justify;
+}
+
+.rootShoot-link-reset {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+#root > *:not(.rootShoot-appbar):not(footer) {
+    flex-grow: 1;
+}
+
+.border-bottom {
+    border-bottom: 2px solid var(--primary-text-color);
+}
+
+#textLogo {
+    display: none;
+}
+
+@media (min-width: 600px) {
+    .rootShoot-hidden {
+        display: none;
+    }
+
+    #textLogo {
+        display: block;
+    }
+}

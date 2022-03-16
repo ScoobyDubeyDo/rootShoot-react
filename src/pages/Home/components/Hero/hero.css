@@ -1,0 +1,75 @@
+.hero {
+    height: calc(100vh - var(--appbar-height));
+}
+
+.hero > .bg-image {
+    height: 50%;
+    background: url(./images/bg-image.svg) no-repeat fixed;
+    background-position: 0 5rem;
+    background-size: contain;
+}
+
+.hero > .bg-empty,
+.hero > .bg-text {
+    background: var(--primary-bg-color) url(./images/bg-image.svg) no-repeat
+        fixed;
+    background-position: 0 5rem;
+    border-radius: 2rem 2rem 0rem 0rem;
+    height: 50%;
+}
+
+.hero > .bg-empty > *,
+.hero > .bg-text > * {
+    height: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    backdrop-filter: blur(2px) saturate(100%);
+    background-color: rgba(200, 230, 201, 0.63);
+    border-top-left-radius: 32px;
+    border-top-right-radius: 32px;
+}
+
+.hero > .bg-empty {
+    display: none;
+}
+
+@media (min-width: 600px) {
+    .hero {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-template-areas:
+            "image image text text"
+            "empty empty text text";
+        background: var(--primary-bg-color);
+    }
+
+    .hero > .bg-empty {
+        height: 100%;
+        grid-area: empty;
+        border-radius: unset;
+        display: block;
+    }
+
+    .hero > .bg-image {
+        border-bottom-right-radius: 32px;
+        background-color: var(--secondary-bg-color);
+        height: 100%;
+        grid-area: image;
+    }
+
+    .hero > .bg-text {
+        border-radius: unset;
+        height: 100%;
+        grid-area: text;
+    }
+
+    .hero > .bg-empty > *,
+    .hero > .bg-text > * {
+        border-radius: unset;
+    }
+}

@@ -1,0 +1,9 @@
+.card-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    grid-gap: 1rem;
+    padding: 2rem;
+    grid-auto-flow: row;
+    justify-items: center;
+    align-items: center;
+}

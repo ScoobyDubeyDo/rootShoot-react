@@ -1,0 +1,8 @@
+.types {
+    border: 2px dashed var(--primary-color);
+}
+
+.types > h2 {
+    margin: 1rem 0;
+    text-decoration: underline;
+}
