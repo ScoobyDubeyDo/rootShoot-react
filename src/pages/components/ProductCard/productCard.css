@@ -1,0 +1,48 @@
+.rootShoot-prods-card {
+    transition: var(--transition);
+    border-color: var(--primary-bg-color);
+    background: #fff;
+}
+
+.rootShoot-prods-card:hover {
+    transition: var(--transition);
+    border-color: var(--primary-color);
+}
+
+.rootShoot-prods-card .card-btns {
+    flex-wrap: wrap;
+}
+
+.rootShoot-types-card {
+    background: var(--primary-bg-color);
+    transition: var(--transition);
+}
+
+.rootShoot-prods-card-img,
+.rootShoot-types-card-img {
+    aspect-ratio: 1/1.1;
+    transition: var(--transition);
+}
+
+@media (min-width: 600px) {
+    .rootShoot-prods-card:hover {
+        transform: scale(1.02);
+    }
+
+    .rootShoot-types-card-badge {
+        transition: var(--transition);
+    }
+    .rootShoot-types-card:hover {
+        transform: scale(0.9);
+    }
+
+    .rootShoot-types-card:hover .rootShoot-types-card-img {
+        outline: 1px solid var(--primary-color);
+    }
+
+    .rootShoot-types-card:hover .rootShoot-types-card-badge {
+        transform: scale(1.2);
+        background-color: var(--primary-color);
+        transition: var(--transition);
+    }
+}

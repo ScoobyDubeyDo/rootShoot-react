@@ -1,0 +1,54 @@
+.rootShoot-appbar {
+    min-height: var(--appbar-height);
+    background: var(--primary-bg-color);
+}
+
+.rootShoot-search {
+    outline: none;
+    background: var(--secondary-bg-color)
+        url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png)
+        no-repeat 1rem center;
+    border: solid 1px var(--primary-text-color);
+    border-radius: 10em;
+    transition: var(--transition);
+    width: 3.125rem;
+    height: 3.125rem;
+    padding-left: 3rem;
+    color: transparent;
+    cursor: pointer;
+}
+
+.rootShoot-search:hover {
+    background-color: #ffffff;
+}
+.rootShoot-search:focus {
+    width: 35%;
+    color: var(--primary-text-color);
+    background-color: #ffffff;
+    border-color: var(--primary-bg-color);
+    box-shadow: 0 0 5px var(--primary-color);
+    cursor: auto;
+}
+
+.rootShoot-search::-webkit-search-cancel-button,
+.rootShoot-search::-webkit-search-results-button,
+.rootShoot-search::-webkit-search-results-decoration,
+.rootShoot-search::-webkit-search-decoration {
+    display: none;
+}
+
+@media (min-width: 600px) {
+    .rootShoot-search {
+        cursor: auto;
+        position: absolute;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        height: 2.5rem;
+        width: 35%;
+    }
+
+    .rootShoot-search:focus {
+        width: 40%;
+    }
+}
