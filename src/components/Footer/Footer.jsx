@@ -1,5 +1,5 @@
 import "./footer.css";
-import imgLogo from "../images/img-logo.png";
+import { imgLogo } from "../images";
 
 import {
     FaGithubSquare,

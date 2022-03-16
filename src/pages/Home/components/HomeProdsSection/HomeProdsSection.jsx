@@ -1,6 +1,7 @@
 import { CardLayout, ProductCard } from "../../../components";
 import { useProduct } from "../../../../context";
 import { faker } from "@faker-js/faker";
+import "./homeProdsSection.css";
 
 export const HomeProdsSection = () => {
     const { products } = useProduct();

@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { CardLayout, ProductCard } from "../../../components";
 import { faker } from "@faker-js/faker";
+import "./homeTypesSection";
 
 export const HomeTypesSection = () => {
     const [categories, setCategories] = useState([]);

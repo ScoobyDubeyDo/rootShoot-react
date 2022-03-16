@@ -1,6 +1,5 @@
 import "./navbar.css";
-import imgLogo from "../images/img-logo.png";
-import textLogo from "../images/text-logo.png";
+import { imgLogo, textLogo } from "../images";
 import { Link } from "react-router-dom";
 import { FaSignOutAlt, FaShoppingCart } from "react-icons/fa";
 import { BsFillBookmarkHeartFill } from "react-icons/bs";
