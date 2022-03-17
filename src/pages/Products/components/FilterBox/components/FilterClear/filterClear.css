@@ -1,0 +1,9 @@
+.cart-price-pair {
+    display: flex;
+    align-items: baseline;
+    text-align: left;
+}
+
+.cart-price-pair > *:first-child {
+    flex-grow: 1;
+}

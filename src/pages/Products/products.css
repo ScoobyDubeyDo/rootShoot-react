@@ -1,0 +1,34 @@
+.filter-footer {
+    position: sticky;
+    bottom: 0;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.filter-footer-btns {
+    font-size: 1.2rem;
+    outline: 1px solid var(--secondary-bg-color);
+    border: unset;
+    background-color: var(--primary-bg-color);
+    justify-content: center;
+    flex: 1 1 auto;
+}
+
+.products-wrapper {
+    position: relative;
+}
+
+@media (min-width: 600px) {
+    .products-wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .products-wrapper > *:nth-child(2) {
+        width: calc(100% - 18rem);
+        margin-bottom: 5rem;
+    }
+}
