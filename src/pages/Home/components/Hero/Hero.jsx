@@ -21,7 +21,7 @@ export const Hero = () => {
                         after them.
                     </p>
                     <button
-                        onClick={() => navigate("/mock")}
+                        onClick={() => navigate("/products")}
                         className="btn-filled-green  rootShoot-margin-center"
                     >
                         Seed now !
