@@ -25,7 +25,7 @@ import {
 
 export const products = [
     {
-        id: faker.datatype.uuid(),
+        _id: faker.datatype.uuid(),
         name: "Coffee Plant",
         rating: faker.datatype.number({ min: 1, max: 5 }),
         price: faker.datatype.number({ min: 240, max: 1599 }),
@@ -33,7 +33,7 @@ export const products = [
         imgUrl: productOne,
     },
     {
-        id: faker.datatype.uuid(),
+        _id: faker.datatype.uuid(),
         name: "Money Tree Plant",
         rating: faker.datatype.number({ min: 1, max: 5 }),
         price: faker.datatype.number({ min: 240, max: 1599 }),
@@ -41,7 +41,7 @@ export const products = [
         imgUrl: productTwo,
     },
     {
-        id: faker.datatype.uuid(),
+        _id: faker.datatype.uuid(),
         name: "Philodendron Green",
         rating: faker.datatype.number({ min: 1, max: 5 }),
         price: faker.datatype.number({ min: 240, max: 1599 }),
@@ -49,7 +49,7 @@ export const products = [
         imgUrl: productThree,
     },
     {
-        id: faker.datatype.uuid(),
+        _id: faker.datatype.uuid(),
         name: "Bird of Paradise",
         rating: faker.datatype.number({ min: 1, max: 5 }),
         price: faker.datatype.number({ min: 240, max: 1599 }),
@@ -57,7 +57,7 @@ export const products = [
         imgUrl: productFour,
     },
     {
-        id: faker.datatype.uuid(),
+        _id: faker.datatype.uuid(),
         name: "Snake Plant",
         rating: faker.datatype.number({ min: 1, max: 5 }),
         price: faker.datatype.number({ min: 240, max: 1599 }),
@@ -65,7 +65,7 @@ export const products = [
         imgUrl: productFive,
     },
     {
-        id: faker.datatype.uuid(),
+        _id: faker.datatype.uuid(),
         name: "Swiss cheese plant",
         rating: faker.datatype.number({ min: 1, max: 5 }),
         price: faker.datatype.number({ min: 240, max: 1599 }),
@@ -73,7 +73,7 @@ export const products = [
         imgUrl: productSix,
     },
     {
-        id: faker.datatype.uuid(),
+        _id: faker.datatype.uuid(),
         name: "Christmas Cactus",
         rating: faker.datatype.number({ min: 1, max: 5 }),
         price: faker.datatype.number({ min: 240, max: 1599 }),
@@ -81,7 +81,7 @@ export const products = [
         imgUrl: productSeven,
     },
     {
-        id: faker.datatype.uuid(),
+        _id: faker.datatype.uuid(),
         name: "Parlor Palm",
         rating: faker.datatype.number({ min: 1, max: 5 }),
         price: faker.datatype.number({ min: 240, max: 1599 }),
@@ -89,7 +89,7 @@ export const products = [
         imgUrl: productEight,
     },
     {
-        id: faker.datatype.uuid(),
+        _id: faker.datatype.uuid(),
         name: "Ficus Bonsai",
         rating: faker.datatype.number({ min: 1, max: 5 }),
         price: faker.datatype.number({ min: 240, max: 1599 }),
@@ -97,7 +97,7 @@ export const products = [
         imgUrl: productNine,
     },
     {
-        id: faker.datatype.uuid(),
+        _id: faker.datatype.uuid(),
         name: "White Orchid",
         rating: faker.datatype.number({ min: 1, max: 5 }),
         price: faker.datatype.number({ min: 240, max: 1599 }),
@@ -105,7 +105,7 @@ export const products = [
         imgUrl: productTen,
     },
     {
-        id: faker.datatype.uuid(),
+        _id: faker.datatype.uuid(),
         name: "Pink Orchid",
         rating: faker.datatype.number({ min: 1, max: 5 }),
         price: faker.datatype.number({ min: 240, max: 1599 }),
@@ -113,7 +113,7 @@ export const products = [
         imgUrl: productEleven,
     },
     {
-        id: faker.datatype.uuid(),
+        _id: faker.datatype.uuid(),
         name: "Hoya Heart",
         rating: faker.datatype.number({ min: 1, max: 5 }),
         price: faker.datatype.number({ min: 240, max: 1599 }),
@@ -121,7 +121,7 @@ export const products = [
         imgUrl: productTwelve,
     },
     {
-        id: faker.datatype.uuid(),
+        _id: faker.datatype.uuid(),
         name: "Echeveria Lola",
         rating: faker.datatype.number({ min: 1, max: 5 }),
         price: faker.datatype.number({ min: 240, max: 1599 }),
@@ -129,7 +129,7 @@ export const products = [
         imgUrl: productThirteen,
     },
     {
-        id: faker.datatype.uuid(),
+        _id: faker.datatype.uuid(),
         name: "Broken Heart Plant",
         rating: faker.datatype.number({ min: 1, max: 5 }),
         price: faker.datatype.number({ min: 240, max: 1599 }),
@@ -137,7 +137,7 @@ export const products = [
         imgUrl: productFourteen,
     },
     {
-        id: faker.datatype.uuid(),
+        _id: faker.datatype.uuid(),
         name: "Adanson's monstera",
         rating: faker.datatype.number({ min: 1, max: 5 }),
         price: faker.datatype.number({ min: 240, max: 1599 }),

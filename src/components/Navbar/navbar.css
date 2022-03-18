@@ -1,6 +1,6 @@
 .rootShoot-appbar {
     min-height: var(--appbar-height);
-    background: var(--primary-bg-color);
+    background: var(--accent-color);
 }
 
 .rootShoot-search {
@@ -8,11 +8,11 @@
     background: var(--secondary-bg-color)
         url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png)
         no-repeat 1rem center;
-    border: solid 1px var(--primary-text-color);
-    border-radius: 10em;
+    border: none;
+    border-radius: 5px;
     transition: var(--transition);
-    width: 3.125rem;
-    height: 3.125rem;
+    width: 3.13rem;
+    height: 3.13rem;
     padding-left: 3rem;
     color: transparent;
     cursor: pointer;
@@ -26,7 +26,7 @@
     color: var(--primary-text-color);
     background-color: #ffffff;
     border-color: var(--primary-bg-color);
-    box-shadow: 0 0 5px var(--primary-color);
+    box-shadow: 0 0 5px var(--primary-bg-color);
     cursor: auto;
 }
 
