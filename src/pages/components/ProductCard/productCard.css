@@ -2,6 +2,7 @@
     transition: var(--transition);
     border-color: var(--primary-bg-color);
     background: #fff;
+    overflow: hidden;
 }
 
 .rootShoot-prods-card:hover {
@@ -25,8 +26,8 @@
 }
 
 @media (min-width: 600px) {
-    .rootShoot-prods-card:hover {
-        transform: scale(1.02);
+    .rootShoot-prods-card:hover .rootShoot-prods-card-img {
+        transform: scale(1.1);
     }
 
     .rootShoot-types-card-badge {

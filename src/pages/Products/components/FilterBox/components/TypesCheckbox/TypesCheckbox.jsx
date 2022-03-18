@@ -1,7 +1,10 @@
+import { useFilter } from "../../../../../../context";
+
 export const TypesCheckbox = ({ categoriesArray }) => {
+    const { state, dispatch } = useFilter();
     return (
         <>
-            <h3 className="heading-5">Type</h3>
+            <h3 className="heading-6">Type</h3>
             <span>
                 {categoriesArray.map((type) => {
                     return (
@@ -13,30 +16,26 @@ export const TypesCheckbox = ({ categoriesArray }) => {
                             <input
                                 id={`${type.toLowerCase()}`}
                                 name="types"
-                                // checked={state.selectedTypes.includes(
-                                //     type.charAt(0).toUpperCase() + type.slice(1)
-                                // )}
-                                value={
-                                    type.charAt(0).toUpperCase() + type.slice(1)
-                                }
+                                checked={state.selectedTypes.includes(type)}
+                                value={type}
                                 type="checkbox"
-                                // onChange={(e) =>
-                                //     e.target.checked
-                                //         ? dispatch({
-                                //               type: "TYPES",
-                                //               payload: {
-                                //                   typeOfProd: e.target.value,
-                                //                   isChecked: true,
-                                //               },
-                                //           })
-                                //         : dispatch({
-                                //               type: "TYPES",
-                                //               payload: {
-                                //                   typeOfProd: e.target.value,
-                                //                   isChecked: false,
-                                //               },
-                                //           })
-                                // }
+                                onChange={(e) =>
+                                    e.target.checked
+                                        ? dispatch({
+                                              type: "TYPES",
+                                              payload: {
+                                                  typeOfProd: e.target.value,
+                                                  isChecked: true,
+                                              },
+                                          })
+                                        : dispatch({
+                                              type: "TYPES",
+                                              payload: {
+                                                  typeOfProd: e.target.value,
+                                                  isChecked: false,
+                                              },
+                                          })
+                                }
                             />
                             {`  ${
                                 type.charAt(0).toUpperCase() + type.slice(1)

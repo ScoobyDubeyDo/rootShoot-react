@@ -1,7 +1,7 @@
 .filter-box {
     display: none;
-    padding: 1rem;
-    background: var(--primary-bg-color);
+    padding: 1rem 1.5rem;
+    background: #ffffff;
     top: 0;
     bottom: 0;
     z-index: 1000;
