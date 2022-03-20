@@ -12,15 +12,16 @@ export const HomeProdsSection = () => {
             <CardLayout>
                 {faker.random
                     .arrayElements(products, 6)
-                    .map(({ name, id, price, rating, type, imgUrl }) => (
+                    .map(({ name, _id, price, rating, type, imgUrl }) => (
                         <ProductCard
                             cardType="prods"
-                            key={id}
+                            key={_id}
                             title={name}
                             imgUrl={imgUrl}
                             price={price}
                             prodTypes={type}
                             rating={rating}
+                            id={_id}
                         />
                     ))}
             </CardLayout>

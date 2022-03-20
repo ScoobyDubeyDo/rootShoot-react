@@ -1,7 +1,13 @@
 import { useFilter } from "../../../../../../context";
-
+import { useEffect } from "react";
 export const TypesCheckbox = ({ categoriesArray }) => {
     const { state, dispatch } = useFilter();
+    useEffect(() => {
+        return () => {
+            dispatch({ type: "CLEAR" });
+        };
+    }, []);
+
     return (
         <>
             <h3 className="heading-6">Type</h3>

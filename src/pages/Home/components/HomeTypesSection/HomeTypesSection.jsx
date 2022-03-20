@@ -10,14 +10,17 @@ export const HomeTypesSection = () => {
         <section className="types">
             <h2 className="heading-4 text-align-center">Popular Types</h2>
             <CardLayout>
-                {faker.random.arrayElements(categories, 4).map((type) => (
-                    <ProductCard
-                        cardType="types"
-                        key={type.id}
-                        title={type.categoryName}
-                        imgUrl={type.displayImg}
-                    />
-                ))}
+                {faker.random
+                    .arrayElements(categories, 4)
+                    .map(({ _id, categoryName, displayImg }) => (
+                        <ProductCard
+                            cardType="types"
+                            key={_id}
+                            title={categoryName}
+                            imgUrl={displayImg}
+                            id={_id}
+                        />
+                    ))}
             </CardLayout>
         </section>
     );
