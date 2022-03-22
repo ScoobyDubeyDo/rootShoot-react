@@ -1,0 +1,19 @@
+.rootShoot-modal {
+    position: absolute;
+    height: calc(100% - var(--appbar-height));
+    top: var(--appbar-height);
+    background: var(--secondary-bg-color);
+}
+
+.rootShoot-modal .modal-header {
+    background-color: var(--primary-bg-color);
+}
+
+.rootShoot-modal .modal-header > *:first-child,
+.rootShoot-modal *[for="remember me"] {
+    margin-left: 16px;
+}
+
+.rootShoot-text-capital {
+    text-transform: capitalize;
+}

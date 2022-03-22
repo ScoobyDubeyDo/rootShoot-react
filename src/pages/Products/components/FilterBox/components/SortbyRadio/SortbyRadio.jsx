@@ -1,7 +1,7 @@
 import { useFilter } from "../../../../../../context";
 
 export const SortbyRadio = ({ sortArray }) => {
-    const { state, dispatch } = useFilter();
+    const { filterState, filterDispatch } = useFilter();
     return (
         <>
             <h3 className="heading-6">Sort By</h3>
@@ -17,9 +17,9 @@ export const SortbyRadio = ({ sortArray }) => {
                             id={sort}
                             type="radio"
                             value={sort}
-                            checked={state.sortStrategy === sort}
+                            checked={filterState.sortStrategy === sort}
                             onChange={(e) =>
-                                dispatch({
+                                filterDispatch({
                                     type: "SORT_BY_PRICE",
                                     payload: { sortWay: e.target.value },
                                 })

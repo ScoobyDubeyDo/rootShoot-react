@@ -5,7 +5,7 @@ import {
     updateSortWay,
 } from "../utils";
 
-export const initialState = {
+export const initialFilterState = {
     initialData: [],
     products: [],
     selectedMaxPrice: 1599,
@@ -40,7 +40,7 @@ export const filterReducer = (state, action) => {
 
         case "CLEAR":
             return {
-                ...initialState,
+                ...initialFilterState,
                 initialData: [...state.initialData],
                 products: [...state.initialData],
             };

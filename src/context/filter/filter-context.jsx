@@ -1,6 +1,5 @@
-import { createContext, useContext, useReducer } from "react";
-import { useEffect } from "react";
-import { filterReducer, initialState } from "../../reducers";
+import { createContext, useContext, useReducer, useEffect } from "react";
+import { filterReducer, initialFilterState } from "../../reducers";
 import { useProduct } from "../product/product-context";
 
 const FilterContext = createContext();
@@ -8,14 +7,17 @@ const FilterContext = createContext();
 const FilterProvider = ({ children }) => {
     const { products } = useProduct();
 
-    const [state, dispatch] = useReducer(filterReducer, initialState);
+    const [filterState, filterDispatch] = useReducer(
+        filterReducer,
+        initialFilterState
+    );
 
     useEffect(() => {
-        dispatch({ type: "INITIALISE", payload: { products } });
+        filterDispatch({ type: "INITIALISE", payload: { products } });
     }, [products]);
 
     return (
-        <FilterContext.Provider value={{ state, dispatch }}>
+        <FilterContext.Provider value={{ filterState, filterDispatch }}>
             {children}
         </FilterContext.Provider>
     );

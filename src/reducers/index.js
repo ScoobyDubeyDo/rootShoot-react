@@ -1,1 +1,1 @@
-export { filterReducer, initialState } from "./filterReducer";
+export { filterReducer, initialFilterState } from "./filterReducer";

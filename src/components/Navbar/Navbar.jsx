@@ -18,6 +18,7 @@ export const Navbar = () => {
                     </Link>
                 </div>
                 <img
+                    alt="logo"
                     id="textLogo"
                     className="responsive-image"
                     src={textLogo}
@@ -29,7 +30,7 @@ export const Navbar = () => {
                 />
                 <div className="appbar-btns">
                     <Link
-                        to="/sign-in"
+                        to="/sign-up"
                         className="rootShoot-link-reset icon-btn-green"
                     >
                         <FaSignOutAlt />
