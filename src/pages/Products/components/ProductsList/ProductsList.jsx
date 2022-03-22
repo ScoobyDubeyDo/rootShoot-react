@@ -2,10 +2,10 @@ import { useFilter } from "../../../../context";
 import { CardLayout, ProductCard } from "../../../components";
 
 export const ProductsList = () => {
-    const { state } = useFilter();
+    const { filterState } = useFilter();
     return (
         <CardLayout>
-            {state.products.map(
+            {filterState.products.map(
                 ({ name, _id, price, rating, type, imgUrl }) => (
                     <ProductCard
                         cardType="prods"

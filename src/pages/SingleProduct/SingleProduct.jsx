@@ -34,7 +34,7 @@ export const SingleProduct = () => {
         <div className="single-product">
             <img
                 src={productDetails.imgUrl}
-                alt="product image"
+                alt={productDetails.name}
                 className="responsive-image"
             />
             <div>

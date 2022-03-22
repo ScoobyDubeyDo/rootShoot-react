@@ -10,7 +10,7 @@ export const Products = () => {
     const [mobileFilterShow, setMobileFilterShow] = useState(false);
     const { categoryId } = useParams();
     const navigate = useNavigate();
-    const { dispatch } = useFilter();
+    const { filterDispatch } = useFilter();
 
     useEffect(() => {
         categoryId &&
@@ -20,7 +20,7 @@ export const Products = () => {
                         `/api/categories/${categoryId}`
                     );
                     if (res.status === 200) {
-                        await dispatch({
+                        await filterDispatch({
                             type: "TYPES",
                             payload: {
                                 typeOfProd: res.data.category.categoryName,

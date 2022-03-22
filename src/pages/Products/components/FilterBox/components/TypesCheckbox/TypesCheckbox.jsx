@@ -1,10 +1,10 @@
 import { useFilter } from "../../../../../../context";
 import { useEffect } from "react";
 export const TypesCheckbox = ({ categoriesArray }) => {
-    const { state, dispatch } = useFilter();
+    const { filterState, filterDispatch } = useFilter();
     useEffect(() => {
         return () => {
-            dispatch({ type: "CLEAR" });
+            filterDispatch({ type: "CLEAR" });
         };
     }, []);
 
@@ -22,19 +22,21 @@ export const TypesCheckbox = ({ categoriesArray }) => {
                             <input
                                 id={`${type.toLowerCase()}`}
                                 name="types"
-                                checked={state.selectedTypes.includes(type)}
+                                checked={filterState.selectedTypes.includes(
+                                    type
+                                )}
                                 value={type}
                                 type="checkbox"
                                 onChange={(e) =>
                                     e.target.checked
-                                        ? dispatch({
+                                        ? filterDispatch({
                                               type: "TYPES",
                                               payload: {
                                                   typeOfProd: e.target.value,
                                                   isChecked: true,
                                               },
                                           })
-                                        : dispatch({
+                                        : filterDispatch({
                                               type: "TYPES",
                                               payload: {
                                                   typeOfProd: e.target.value,

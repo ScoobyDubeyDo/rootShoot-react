@@ -3,7 +3,7 @@ import "./ratingRadio.css";
 import { FaStar } from "react-icons/fa";
 
 export const RatingRadio = ({ starsArray }) => {
-    const { state, dispatch } = useFilter();
+    const { filterState, filterDispatch } = useFilter();
 
     return (
         <>
@@ -13,14 +13,14 @@ export const RatingRadio = ({ starsArray }) => {
                     <label key={star} htmlFor={star} className="star-display">
                         <input
                             onChange={(e) => {
-                                dispatch({
+                                filterDispatch({
                                     type: "STAR_RATING",
                                     payload: {
                                         selectedStar: Number(e.target.value),
                                     },
                                 });
                             }}
-                            checked={state.selectedRating === star}
+                            checked={filterState.selectedRating === star}
                             type="radio"
                             id={star}
                             name="star"
