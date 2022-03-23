@@ -1,18 +1,18 @@
-export const formValidate = (emailRef, passwordRef, setErrors, nameRef) => {
+export const formValidate = (email, password, setErrors, name) => {
     let temp = {};
-    temp.email = emailRef.current.value
-        ? /^.+@.+.\.+.+./.test(emailRef.current.value)
+    temp.email = email
+        ? /^.+@.+.\.+.+./.test(email)
             ? ""
             : "Email is not valid"
         : "Provide a Email id";
 
-    temp.password = passwordRef.current.value
-        ? /.{8,}$/.test(passwordRef.current.value)
+    temp.password = password
+        ? /.{8,}$/.test(password)
             ? ""
             : "Password must has atleast 8 characters"
         : "Provide a password";
 
-    nameRef && (temp.name = nameRef.current.value ? "" : "Provide your Name");
+    name && (temp.name = name ? "" : "Provide your Name");
 
     setErrors({
         ...temp,

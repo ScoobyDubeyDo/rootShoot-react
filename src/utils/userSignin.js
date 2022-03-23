@@ -3,19 +3,21 @@ import axios from "axios";
 
 export const userSignin = async (
     e,
-    emailRef,
-    passwordRef,
+    email,
+    password,
     setFieldErrors,
     setCurrentUser,
-    navigate
+    navigate,
+    setIsLoading
 ) => {
     e.preventDefault();
-    if (formValidate(emailRef, passwordRef, setFieldErrors)) {
+    if (formValidate(email, password, setFieldErrors)) {
         (async () => {
             try {
+                setIsLoading(true);
                 const res = await axios.post("/api/auth/login", {
-                    email: emailRef.current.value,
-                    password: passwordRef.current.value,
+                    email: email,
+                    password: password,
                 });
                 if (res.status === 200) {
                     setCurrentUser({
@@ -23,6 +25,7 @@ export const userSignin = async (
                         ...res.data.foundUser,
                     });
                     localStorage.setItem("token", res.data.encodedToken);
+                    setIsLoading(false);
                     navigate("/");
                 }
             } catch (err) {

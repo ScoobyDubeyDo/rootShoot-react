@@ -2,12 +2,14 @@ import "./productCard.css";
 import { FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { addToWishlist } from "../../../utils";
-import { useWishlist, useAuth } from "../../../context";
+import { useWishlist, useAuth, useLoader } from "../../../context";
 export const ProductCard = ({ cardType, product, title }) => {
     const navigate = useNavigate();
     const { wishlist, setWishlist } = useWishlist();
     const { currentUser } = useAuth();
+    const { setIsLoading } = useLoader();
     const { _id, rating, imgUrl, price, type } = product;
+
     return (
         <div
             className={`card rootShoot-${cardType}-card`}
@@ -83,7 +85,8 @@ export const ProductCard = ({ cardType, product, title }) => {
                                             )
                                                 ? addToWishlist(
                                                       product,
-                                                      setWishlist
+                                                      setWishlist,
+                                                      setIsLoading
                                                   )
                                                 : navigate("/wishlist");
                                         } else navigate("/sign-in");

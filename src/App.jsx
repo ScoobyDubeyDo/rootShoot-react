@@ -9,11 +9,15 @@ import {
     SingleProduct,
     Wishlist,
 } from "./pages";
-import { Navbar, Footer, PrivateRoute } from "./components";
+import { Navbar, Footer, PrivateRoute, Loader } from "./components";
+import { useLoader } from "./context";
 
 function App() {
+    const { isLoading } = useLoader();
+
     return (
         <>
+            {isLoading && <Loader />}
             <Navbar />
             <Routes>
                 <Route

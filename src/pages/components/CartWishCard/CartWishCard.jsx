@@ -1,10 +1,12 @@
 import { MdDeleteForever } from "react-icons/md";
-import { useAuth, useWishlist } from "../../../context";
+import { useAuth, useWishlist, useLoader } from "../../../context";
 import { deleteFromWishlist } from "../../../utils";
 export const CartWishCard = ({ product, cardType }) => {
     const { name, imgUrl, type, price, _id } = product;
     const { setWishlist } = useWishlist();
     const { currentUser } = useAuth();
+    const { setIsLoading } = useLoader();
+
     return (
         <div className="card rootShoot-prods-card">
             <div
@@ -12,7 +14,7 @@ export const CartWishCard = ({ product, cardType }) => {
                 onClick={async (e) => {
                     e.stopPropagation();
                     if (currentUser?.encodedToken) {
-                        deleteFromWishlist(product, setWishlist);
+                        deleteFromWishlist(product, setWishlist, setIsLoading);
                     }
                 }}
             >
