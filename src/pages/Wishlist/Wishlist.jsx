@@ -1,9 +1,8 @@
+import { useWishlist } from "../../context";
 import { CardLayout, CartWishCard } from "../components";
-import { useProduct } from "../../context";
-import faker from "@faker-js/faker";
 
 export const Wishlist = () => {
-    const { products } = useProduct();
+    const { wishlist } = useWishlist();
 
     return (
         <>
@@ -11,15 +10,11 @@ export const Wishlist = () => {
                 Favorite Floras
             </h2>
             <CardLayout>
-                {faker.random.arrayElements(products, 5).map((product) => (
+                {wishlist.map((item) => (
                     <CartWishCard
-                        title={product.name}
                         cardType="wishlist"
-                        imgUrl={product.imgUrl}
-                        price={product.price}
-                        prodTypes={product.type}
-                        id={product._id}
-                        key={product._id}
+                        key={item._id}
+                        product={item}
                     />
                 ))}
             </CardLayout>

@@ -19,36 +19,36 @@ export const categories = [
     {
         _id: faker.datatype.uuid(),
         categoryName: "indoor",
-        displayImg: productOne,
+        imgUrl: productOne,
     },
     {
         _id: faker.datatype.uuid(),
         categoryName: "cacti",
-        displayImg: productSeven,
+        imgUrl: productSeven,
     },
     {
         _id: faker.datatype.uuid(),
         categoryName: "bonsai",
-        displayImg: productNine,
+        imgUrl: productNine,
     },
     {
         _id: faker.datatype.uuid(),
         categoryName: "monstera",
-        displayImg: productFourteen,
+        imgUrl: productFourteen,
     },
     {
         _id: faker.datatype.uuid(),
         categoryName: "flowering",
-        displayImg: productTen,
+        imgUrl: productTen,
     },
     {
         _id: faker.datatype.uuid(),
         categoryName: "air purifying",
-        displayImg: productEight,
+        imgUrl: productEight,
     },
     {
         _id: faker.datatype.uuid(),
         categoryName: "succulent",
-        displayImg: productThirteen,
+        imgUrl: productThirteen,
     },
 ];
