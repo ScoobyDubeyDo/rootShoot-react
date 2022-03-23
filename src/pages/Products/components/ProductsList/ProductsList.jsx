@@ -5,20 +5,14 @@ export const ProductsList = () => {
     const { filterState } = useFilter();
     return (
         <CardLayout>
-            {filterState.products.map(
-                ({ name, _id, price, rating, type, imgUrl }) => (
-                    <ProductCard
-                        cardType="prods"
-                        key={_id}
-                        title={name}
-                        imgUrl={imgUrl}
-                        price={price}
-                        prodTypes={type}
-                        rating={rating}
-                        id={_id}
-                    />
-                )
-            )}
+            {filterState.products.map((item) => (
+                <ProductCard
+                    cardType="prods"
+                    key={item._id}
+                    title={item.name}
+                    product={item}
+                />
+            ))}
         </CardLayout>
     );
 };

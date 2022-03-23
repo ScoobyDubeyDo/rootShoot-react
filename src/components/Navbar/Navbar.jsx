@@ -3,8 +3,11 @@ import { imgLogo, textLogo } from "../images";
 import { Link } from "react-router-dom";
 import { FaSignOutAlt, FaShoppingCart } from "react-icons/fa";
 import { BsFillBookmarkHeartFill } from "react-icons/bs";
+import { useWishlist } from "../../context";
 
 export const Navbar = () => {
+    const { wishlist } = useWishlist();
+
     return (
         <>
             <div className="appbar-standard rootShoot-appbar">
@@ -42,7 +45,11 @@ export const Navbar = () => {
                         >
                             <BsFillBookmarkHeartFill />
                         </Link>
-                        <span className="number-badge-blue">13</span>
+                        {wishlist.length > 0 && (
+                            <span className="number-badge-blue">
+                                {wishlist.length}
+                            </span>
+                        )}
                     </div>
                     <div className="badge-container">
                         <Link

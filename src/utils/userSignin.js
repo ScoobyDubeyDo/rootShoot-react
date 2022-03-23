@@ -22,9 +22,8 @@ export const userSignin = async (
                         encodedToken: res.data.encodedToken,
                         ...res.data.foundUser,
                     });
-                    // localStorage.setItem("token", res.data.encodedToken);
+                    localStorage.setItem("token", res.data.encodedToken);
                     navigate("/");
-                    console.log(res);
                 }
             } catch (err) {
                 console.log("Error while logging in", err);

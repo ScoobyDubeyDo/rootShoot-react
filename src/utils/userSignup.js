@@ -24,7 +24,7 @@ export const userSignup = async (
                         encodedToken: res.data.encodedToken,
                         ...res.data.createdUser,
                     });
-                    // localStorage.setItem("token", res.data.encodedToken);
+                    localStorage.setItem("token", res.data.encodedToken);
                     navigate("/");
                 }
             } catch (err) {

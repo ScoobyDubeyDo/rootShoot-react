@@ -1,37 +1,42 @@
 import { MdDeleteForever } from "react-icons/md";
-export const CartWishCard = ({
-    title,
-    imgUrl,
-    cardType,
-    prodTypes,
-    price,
-    id,
-}) => {
-    prodTypes = prodTypes.toLocaleString();
+import { useAuth, useWishlist } from "../../../context";
+import { deleteFromWishlist } from "../../../utils";
+export const CartWishCard = ({ product, cardType }) => {
+    const { name, imgUrl, type, price, _id } = product;
+    const { setWishlist } = useWishlist();
+    const { currentUser } = useAuth();
     return (
         <div className="card rootShoot-prods-card">
-            <div className="card-badge-green">
+            <div
+                className="card-badge-green"
+                onClick={async (e) => {
+                    e.stopPropagation();
+                    if (currentUser?.encodedToken) {
+                        deleteFromWishlist(product, setWishlist);
+                    }
+                }}
+            >
                 <MdDeleteForever size={24} />
             </div>
             <div className="card-body-horizontal">
                 <img
                     src={imgUrl}
-                    alt={title}
+                    alt={name}
                     className="card-side-image rootShoot-prods-card-img"
                 />
                 <div className="card-side-content">
-                    <h2 className="card-title text-noWrap">{title}</h2>
+                    <h2 className="card-title text-noWrap">{name}</h2>
                     <p className="card-subtitle rootShoot-full-width">
-                        {prodTypes}
+                        {type.toLocaleString()}
                     </p>
                     <p className="card-title heading-6 rootShoot-full-width">
                         {price}
                     </p>
                     <div className="card-actions">
                         {cardType === "cart" && (
-                            <label htmlFor={id}>
+                            <label htmlFor={_id}>
                                 Quantity:
-                                <select name="qty" id={id}>
+                                <select name="qty" id={_id}>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
