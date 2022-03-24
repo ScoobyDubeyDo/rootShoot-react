@@ -21,7 +21,6 @@ export const Products = () => {
                     const res = await axios.get(
                         `/api/categories/${categoryId}`
                     );
-                    console.log("category ran");
                     if (res.status === 200) {
                         await filterDispatch({
                             type: "TYPES",

@@ -9,7 +9,7 @@ import {
     SingleProduct,
     Wishlist,
 } from "./pages";
-import { Navbar, Footer, PrivateRoute, Loader } from "./components";
+import { Navbar, Footer, PrivateRoute, Spinner } from "./components";
 import { useLoader } from "./context";
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
 
     return (
         <>
-            {isLoading && <Loader />}
+            {isLoading && <Spinner />}
             <Navbar />
             <Routes>
                 <Route

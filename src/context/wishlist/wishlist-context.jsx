@@ -16,7 +16,6 @@ const WishlistProvider = ({ children }) => {
                 const res = await axios.get("/api/user/wishlist", {
                     headers: { authorization: localStorage.getItem("token") },
                 });
-                console.log("wishlist ran");
                 if (res.status) {
                     setWishlist(res.data.wishlist);
                     setIsLoading(false);

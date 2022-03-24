@@ -1,4 +1,5 @@
 import { MdDeleteForever } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 import { useAuth, useWishlist, useLoader } from "../../../context";
 import { deleteFromWishlist } from "../../../utils";
 export const CartWishCard = ({ product, cardType }) => {
@@ -6,9 +7,15 @@ export const CartWishCard = ({ product, cardType }) => {
     const { setWishlist } = useWishlist();
     const { currentUser } = useAuth();
     const { setIsLoading } = useLoader();
+    const navigate = useNavigate();
 
     return (
-        <div className="card rootShoot-prods-card">
+        <div
+            className="card rootShoot-prods-card"
+            onClick={() => {
+                navigate(`/products/${_id}`);
+            }}
+        >
             <div
                 className="card-badge-green"
                 onClick={async (e) => {
@@ -32,7 +39,7 @@ export const CartWishCard = ({ product, cardType }) => {
                         {type.toLocaleString()}
                     </p>
                     <p className="card-title heading-6 rootShoot-full-width">
-                        {price}
+                        {`₹ ${price}`}
                     </p>
                     <div className="card-actions">
                         {cardType === "cart" && (

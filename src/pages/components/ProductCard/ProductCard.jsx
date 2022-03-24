@@ -13,7 +13,7 @@ export const ProductCard = ({ cardType, product, title }) => {
     return (
         <div
             className={`card rootShoot-${cardType}-card`}
-            onClick={async () => {
+            onClick={() => {
                 if (cardType === "types") {
                     return navigate(`/products/type/${_id}`);
                 }

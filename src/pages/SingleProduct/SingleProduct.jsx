@@ -23,7 +23,6 @@ export const SingleProduct = () => {
             try {
                 setIsLoading(true);
                 const res = await axios.get(`/api/products/${productId}`);
-                console.log("product ran");
                 if (res.status === 200) {
                     setProductDetails(res.data.product);
                     setIsLoading(false);

@@ -1,6 +1,6 @@
 import loader from "./loader.json";
 import Lottie from "react-lottie";
-import "./loader.css";
+import "./spinner.css";
 import { useLockBodyScroll } from "../../hooks";
 
 const defaultOptions = {
@@ -12,7 +12,7 @@ const defaultOptions = {
     },
 };
 
-export const Loader = () => {
+export const Spinner = () => {
     useLockBodyScroll();
 
     return (

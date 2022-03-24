@@ -13,7 +13,6 @@ const ProductProvider = ({ children }) => {
             try {
                 setIsLoading(true);
                 const res = await axios.get("/api/products");
-                console.log("products ran");
                 if (res.status === 200) {
                     setProducts(res.data.products);
                     setIsLoading(false);
@@ -26,7 +25,6 @@ const ProductProvider = ({ children }) => {
             try {
                 setIsLoading(true);
                 const res = await axios.get("/api/categories");
-                console.log("categories ran");
                 if (res.status === 200) {
                     setCategories(res.data.categories);
                     setIsLoading(false);
