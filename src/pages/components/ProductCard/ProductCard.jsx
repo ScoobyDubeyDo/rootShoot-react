@@ -1,11 +1,11 @@
 import "./productCard.css";
 import { FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { addToWishlist } from "../../../utils";
-import { useWishlist, useAuth, useLoader } from "../../../context";
+import { addToCartOrWishlist } from "../../../utils";
+import { useWishlistAndCart, useAuth, useLoader } from "../../../context";
 export const ProductCard = ({ cardType, product, title }) => {
     const navigate = useNavigate();
-    const { wishlist, setWishlist } = useWishlist();
+    const { cart, wishlist, setWishlist, setCart } = useWishlistAndCart();
     const { currentUser } = useAuth();
     const { setIsLoading } = useLoader();
     const { _id, rating, imgUrl, price, type } = product;
@@ -66,15 +66,34 @@ export const ProductCard = ({ cardType, product, title }) => {
                                 <button
                                     onClick={(e) => {
                                         e.stopPropagation();
-                                        console.log(
-                                            "pseudo code to remind me that I have to fix this in future"
-                                        );
+
+                                        if (currentUser?.encodedToken) {
+                                            !cart.some(
+                                                (item) => item._id === _id
+                                            ) &&
+                                            !wishlist.some(
+                                                (item) => item._id === _id
+                                            )
+                                                ? addToCartOrWishlist(
+                                                      "cart",
+                                                      product,
+                                                      setCart,
+                                                      setIsLoading
+                                                  )
+                                                : wishlist.some(
+                                                      (item) => item._id === _id
+                                                  )
+                                                ? console.log("buy now")
+                                                : navigate("/cart");
+                                        } else navigate("/sign-in");
                                     }}
                                     className="btn-filled-green rootShoot-full-width text-align-center"
                                 >
-                                    {!wishlist.some((item) => item._id === _id)
-                                        ? "Add to cart"
-                                        : "buy now"}
+                                    {wishlist.some((item) => item._id === _id)
+                                        ? "buy now"
+                                        : cart.some((item) => item._id === _id)
+                                        ? "go to cart"
+                                        : "Add to cart"}
                                 </button>
                                 <button
                                     onClick={async (e) => {
@@ -83,7 +102,8 @@ export const ProductCard = ({ cardType, product, title }) => {
                                             !wishlist.some(
                                                 (item) => item._id === _id
                                             )
-                                                ? addToWishlist(
+                                                ? addToCartOrWishlist(
+                                                      "wishlist",
                                                       product,
                                                       setWishlist,
                                                       setIsLoading

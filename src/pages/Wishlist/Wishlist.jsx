@@ -1,8 +1,8 @@
-import { useWishlist } from "../../context";
+import { useWishlistAndCart } from "../../context";
 import { CardLayout, CartWishCard } from "../components";
 
 export const Wishlist = () => {
-    const { wishlist } = useWishlist();
+    const { wishlist } = useWishlistAndCart();
 
     return (
         <>

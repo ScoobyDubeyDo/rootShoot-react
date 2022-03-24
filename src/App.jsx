@@ -11,6 +11,7 @@ import {
 } from "./pages";
 import { Navbar, Footer, PrivateRoute, Spinner } from "./components";
 import { useLoader } from "./context";
+import { ItemDetails, PriceDetails } from "./pages/Cart/components";
 
 function App() {
     const { isLoading } = useLoader();
@@ -47,7 +48,13 @@ function App() {
                     </Route>
                     <Route element={<PrivateRoute />}>
                         <Route path="wishlist" element={<Wishlist />} />
-                        <Route path="cart" element={<Cart />} />
+                        <Route path="cart" element={<Cart />}>
+                            <Route index element={<ItemDetails />} />
+                            <Route
+                                path="price-details"
+                                element={<PriceDetails />}
+                            />
+                        </Route>
                     </Route>
                 </Route>
 
