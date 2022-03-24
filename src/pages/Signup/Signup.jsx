@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import "./signup.css";
-import { useAuth } from "../../context";
+import { useAuth, useLoader } from "../../context";
 import { userSignup } from "../../utils";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -11,6 +11,7 @@ export const Signup = () => {
     const navigate = useNavigate();
     const [fieldErrors, setFieldErrors] = useState({});
     const { setCurrentUser } = useAuth();
+    const { setIsLoading } = useLoader();
 
     return (
         <div className="modal-sm rootShoot-modal" id="modal-1">
@@ -31,12 +32,13 @@ export const Signup = () => {
                             onSubmit={(e) =>
                                 userSignup(
                                     e,
-                                    nameRef,
-                                    emailRef,
-                                    passwordRef,
+                                    nameRef.current.value,
+                                    emailRef.current.value,
+                                    passwordRef.current.value,
                                     setFieldErrors,
                                     setCurrentUser,
-                                    navigate
+                                    navigate,
+                                    setIsLoading
                                 )
                             }
                         >

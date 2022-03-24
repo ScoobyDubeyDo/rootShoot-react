@@ -1,18 +1,22 @@
 import axios from "axios";
 import { createContext, useContext, useState, useEffect } from "react";
+import { useLoader } from "../loader/loader-context";
 
 const ProductContext = createContext();
 
 const ProductProvider = ({ children }) => {
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
-
+    const { setIsLoading } = useLoader();
     useEffect(() => {
         (async () => {
             try {
+                setIsLoading(true);
                 const res = await axios.get("/api/products");
+                console.log("products ran");
                 if (res.status === 200) {
                     setProducts(res.data.products);
+                    setIsLoading(false);
                 }
             } catch (err) {
                 console.log("Error while getting products", err);
@@ -20,9 +24,12 @@ const ProductProvider = ({ children }) => {
         })();
         (async () => {
             try {
+                setIsLoading(true);
                 const res = await axios.get("/api/categories");
+                console.log("categories ran");
                 if (res.status === 200) {
                     setCategories(res.data.categories);
+                    setIsLoading(false);
                 }
             } catch (err) {
                 console.log("Error while getting categories", err);

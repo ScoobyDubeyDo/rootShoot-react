@@ -3,22 +3,25 @@ import { FaFilter } from "react-icons/fa";
 import "./products.css";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useFilter } from "../../context";
+import { useFilter, useLoader } from "../../context";
 import axios from "axios";
 
 export const Products = () => {
     const [mobileFilterShow, setMobileFilterShow] = useState(false);
     const { categoryId } = useParams();
     const navigate = useNavigate();
+    const { setIsLoading } = useLoader();
     const { filterDispatch } = useFilter();
 
     useEffect(() => {
         categoryId &&
             (async () => {
                 try {
+                    setIsLoading(true);
                     const res = await axios.get(
                         `/api/categories/${categoryId}`
                     );
+                    console.log("category ran");
                     if (res.status === 200) {
                         await filterDispatch({
                             type: "TYPES",
@@ -27,6 +30,7 @@ export const Products = () => {
                                 isChecked: true,
                             },
                         });
+                        setIsLoading(false);
                         navigate("/products", { replace: true });
                     }
                 } catch (err) {

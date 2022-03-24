@@ -3,21 +3,23 @@ import axios from "axios";
 
 export const userSignup = async (
     e,
-    nameRef,
-    emailRef,
-    passwordRef,
+    name,
+    email,
+    password,
     setFieldErrors,
     setCurrentUser,
-    navigate
+    navigate,
+    setIsLoading
 ) => {
     e.preventDefault();
-    if (formValidate(emailRef, passwordRef, setFieldErrors, nameRef)) {
+    if (formValidate(email, password, setFieldErrors, name)) {
         (async () => {
             try {
+                setIsLoading(true);
                 const res = await axios.post("/api/auth/signup", {
-                    email: emailRef.current.value,
-                    password: passwordRef.current.value,
-                    name: nameRef.current.value,
+                    email: email,
+                    password: password,
+                    name: name,
                 });
                 if (res.status === 201) {
                     setCurrentUser({
@@ -25,6 +27,7 @@ export const userSignup = async (
                         ...res.data.createdUser,
                     });
                     localStorage.setItem("token", res.data.encodedToken);
+                    setIsLoading(false);
                     navigate("/");
                 }
             } catch (err) {

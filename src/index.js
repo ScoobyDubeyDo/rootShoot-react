@@ -9,6 +9,7 @@ import {
     FilterProvider,
     AuthProvider,
     WishlistProvider,
+    LoaderProvider,
 } from "./context";
 
 // Call make Server
@@ -16,17 +17,19 @@ makeServer();
 
 ReactDOM.render(
     <React.StrictMode>
-        <ProductProvider>
-            <FilterProvider>
-                <AuthProvider>
-                    <WishlistProvider>
-                        <Router>
-                            <App />
-                        </Router>
-                    </WishlistProvider>
-                </AuthProvider>
-            </FilterProvider>
-        </ProductProvider>
+        <LoaderProvider>
+            <ProductProvider>
+                <FilterProvider>
+                    <AuthProvider>
+                        <WishlistProvider>
+                            <Router>
+                                <App />
+                            </Router>
+                        </WishlistProvider>
+                    </AuthProvider>
+                </FilterProvider>
+            </ProductProvider>
+        </LoaderProvider>
     </React.StrictMode>,
     document.getElementById("root")
 );

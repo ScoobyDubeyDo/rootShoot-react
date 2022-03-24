@@ -2,13 +2,14 @@ import "./singleProduct.css";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useLoader } from "../../context";
 
 const ProdDesc =
     "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero dicta sit, tenetur dolorem nobis distinctio. Aperiam blanditiis fugit quos? Vel eveniet nisi porro excepturi, voluptates atque iure. Atque numquam nihil pariatur inventore sit magnam, rem tempore ex, voluptas laudantium aperiam nulla! Quas eum sed, quidem eaque dolores facilis illo cumque v erit recusandae quibusdam accusantium totam pariatur optio. Veniam nihil nostrum id expedita quos unde ipsam dolor beatae dicta, distinctio asperiores.";
 
 export const SingleProduct = () => {
     const { productId } = useParams();
-
+    const { setIsLoading } = useLoader();
     const [productDetails, setProductDetails] = useState({
         imgUrl: "",
         name: "",
@@ -20,9 +21,12 @@ export const SingleProduct = () => {
     useEffect(() => {
         (async () => {
             try {
+                setIsLoading(true);
                 const res = await axios.get(`/api/products/${productId}`);
+                console.log("product ran");
                 if (res.status === 200) {
                     setProductDetails(res.data.product);
+                    setIsLoading(false);
                 }
             } catch (err) {
                 console.log("Error while getting the product", err);

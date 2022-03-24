@@ -1,7 +1,8 @@
 import axios from "axios";
 
-export const addToWishlist = async (product, setWishlist) => {
+export const addToWishlist = async (product, setWishlist, setIsLoading) => {
     try {
+        setIsLoading(true);
         const res = await axios.post(
             "/api/user/wishlist",
             {
@@ -15,6 +16,7 @@ export const addToWishlist = async (product, setWishlist) => {
         );
         if (res.status === 201) {
             setWishlist(res.data.wishlist);
+            setIsLoading(false);
         }
     } catch (err) {
         console.log(err, "Error while adding the product to wishlist");

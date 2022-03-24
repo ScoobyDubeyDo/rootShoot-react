@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { useAuth } from "../../context";
+import { useAuth, useLoader } from "../../context";
 import { userSignin } from "../../utils";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -9,7 +9,7 @@ export const Signin = () => {
     const navigate = useNavigate();
     const [fieldErrors, setFieldErrors] = useState({});
     const { setCurrentUser } = useAuth();
-
+    const { setIsLoading } = useLoader();
     return (
         <div className="modal-sm rootShoot-modal" id="modal-1">
             <div className="modal-dialog">
@@ -29,11 +29,12 @@ export const Signin = () => {
                             onSubmit={(e) =>
                                 userSignin(
                                     e,
-                                    emailRef,
-                                    passwordRef,
+                                    emailRef.current.value,
+                                    passwordRef.current.value,
                                     setFieldErrors,
                                     setCurrentUser,
-                                    navigate
+                                    navigate,
+                                    setIsLoading
                                 )
                             }
                         >
@@ -75,6 +76,24 @@ export const Signin = () => {
                                 className="btn-filled-green rootShoot-margin-center text-align-center"
                                 type="submit"
                                 value="Sign in"
+                            />
+                            <input
+                                // the style below is temporary, this entire button is going to get deleted
+                                style={{ marginTop: "1rem" }}
+                                className="btn-filled-green rootShoot-margin-center text-align-center"
+                                type="reset"
+                                value="guest sign in"
+                                onClick={(e) =>
+                                    userSignin(
+                                        e,
+                                        "a@aa.aa",
+                                        "aaaaaaaa",
+                                        setFieldErrors,
+                                        setCurrentUser,
+                                        navigate,
+                                        setIsLoading
+                                    )
+                                }
                             />
                         </form>
                     </div>
