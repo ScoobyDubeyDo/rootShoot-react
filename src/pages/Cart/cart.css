@@ -1,0 +1,47 @@
+.cart {
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4rem;
+}
+
+.cart-price-pair {
+    display: flex;
+    align-items: baseline;
+    text-align: left;
+}
+
+.cart-price-pair > *:first-child {
+    flex-grow: 1;
+}
+
+.cart-bill {
+    order: -1;
+    position: relative;
+    flex-basis: 100%;
+}
+.cart-bill > * {
+    width: 100%;
+    position: sticky;
+    top: var(--appbar-height);
+    z-index: 3;
+}
+
+.cart-bill input[placeholder="Coupon Code"] {
+    border: solid 1px var(--primary-text-color);
+    border-radius: 10em;
+    padding: 0.2rem 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+@media (min-width: 900px) {
+    .cart-bill {
+        order: unset;
+        flex-basis: calc(30% - 2rem);
+    }
+
+    .cart > .card-layout {
+        flex-basis: calc(70% - 2rem);
+    }
+}

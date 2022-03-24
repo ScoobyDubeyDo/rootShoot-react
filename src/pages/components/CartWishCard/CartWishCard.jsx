@@ -1,10 +1,11 @@
+import { FaTimesCircle } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import { useAuth, useWishlist, useLoader } from "../../../context";
-import { deleteFromWishlist } from "../../../utils";
+import { useAuth, useWishlistAndCart, useLoader } from "../../../context";
+import { deleteFromCartOrWishlist } from "../../../utils";
 export const CartWishCard = ({ product, cardType }) => {
     const { name, imgUrl, type, price, _id } = product;
-    const { setWishlist } = useWishlist();
+    const { setWishlist, setCart } = useWishlistAndCart();
     const { currentUser } = useAuth();
     const { setIsLoading } = useLoader();
     const navigate = useNavigate();
@@ -18,14 +19,35 @@ export const CartWishCard = ({ product, cardType }) => {
         >
             <div
                 className="card-badge-green"
-                onClick={async (e) => {
+                onClick={(e) => {
                     e.stopPropagation();
-                    if (currentUser?.encodedToken) {
-                        deleteFromWishlist(product, setWishlist, setIsLoading);
+                    if (cardType === "cart") {
+                        if (currentUser?.encodedToken) {
+                            return deleteFromCartOrWishlist(
+                                "cart",
+                                product,
+                                setCart,
+                                setIsLoading
+                            );
+                        }
+                    }
+                    if (cardType === "wishlist") {
+                        if (currentUser?.encodedToken) {
+                            return deleteFromCartOrWishlist(
+                                "wishlist",
+                                product,
+                                setWishlist,
+                                setIsLoading
+                            );
+                        }
                     }
                 }}
             >
-                <MdDeleteForever size={24} />
+                {cardType === "cart" ? (
+                    <FaTimesCircle />
+                ) : (
+                    <MdDeleteForever size={24} />
+                )}
             </div>
             <div className="card-body-horizontal">
                 <img

@@ -7,5 +7,5 @@ export const sortTypes = ["low-to-high", "high-to-low"];
 export { formValidate } from "./formValidate";
 export { userSignup } from "./userSignup";
 export { userSignin } from "./userSignin";
-export { addToWishlist } from "./addToWishlist";
-export { deleteFromWishlist } from "./deleteFromWishlist";
+export { addToCartOrWishlist } from "./addToCartOrWishlist";
+export { deleteFromCartOrWishlist } from "./deleteFromCartOrWishlist";

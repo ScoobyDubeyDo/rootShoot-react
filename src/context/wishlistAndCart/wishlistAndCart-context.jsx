@@ -3,12 +3,14 @@ import { createContext, useContext, useState, useEffect } from "react";
 import { useAuth } from "../auth/auth-context";
 import { useLoader } from "../loader/loader-context";
 
-const WishlistContext = createContext();
+const WishlistAndCartContext = createContext();
 
-const WishlistProvider = ({ children }) => {
+const WishlistAndCartProvider = ({ children }) => {
     const [wishlist, setWishlist] = useState([]);
+    const [cart, setCart] = useState([]);
     const { currentUser } = useAuth();
     const { setIsLoading } = useLoader();
+
     useEffect(() => {
         (async () => {
             try {
@@ -24,15 +26,31 @@ const WishlistProvider = ({ children }) => {
                 console.log(err.message, "error while getting wishlist");
             }
         })();
+        (async () => {
+            try {
+                setIsLoading(true);
+                const res = await axios.get("/api/user/cart", {
+                    headers: { authorization: localStorage.getItem("token") },
+                });
+                if (res.status) {
+                    setCart(res.data.cart);
+                    setIsLoading(false);
+                }
+            } catch (err) {
+                console.log(err.message, "error while getting cart");
+            }
+        })();
     }, [currentUser]);
 
     return (
-        <WishlistContext.Provider value={{ wishlist, setWishlist }}>
+        <WishlistAndCartContext.Provider
+            value={{ wishlist, setWishlist, cart, setCart }}
+        >
             {children}
-        </WishlistContext.Provider>
+        </WishlistAndCartContext.Provider>
     );
 };
 
-const useWishlist = () => useContext(WishlistContext);
+const useWishlistAndCart = () => useContext(WishlistAndCartContext);
 
-export { WishlistProvider, useWishlist };
+export { WishlistAndCartProvider, useWishlistAndCart };

@@ -3,10 +3,10 @@ import { imgLogo, textLogo } from "../images";
 import { Link } from "react-router-dom";
 import { FaSignOutAlt, FaShoppingCart } from "react-icons/fa";
 import { BsFillBookmarkHeartFill } from "react-icons/bs";
-import { useWishlist } from "../../context";
+import { useWishlistAndCart } from "../../context";
 
 export const Navbar = () => {
-    const { wishlist } = useWishlist();
+    const { wishlist, cart } = useWishlistAndCart();
 
     return (
         <>
@@ -58,7 +58,11 @@ export const Navbar = () => {
                         >
                             <FaShoppingCart />
                         </Link>
-                        <span className="number-badge-blue">5</span>
+                        {cart.length > 0 && (
+                            <span className="number-badge-blue">
+                                {cart.length}
+                            </span>
+                        )}
                     </div>
                 </div>
             </div>

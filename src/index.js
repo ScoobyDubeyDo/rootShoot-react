@@ -3,13 +3,14 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter as Router } from "react-router-dom";
+import { ScrollToTop } from "./components";
 import "./index.css";
 import {
     ProductProvider,
     FilterProvider,
     AuthProvider,
-    WishlistProvider,
     LoaderProvider,
+    WishlistAndCartProvider,
 } from "./context";
 
 // Call make Server
@@ -21,11 +22,13 @@ ReactDOM.render(
             <ProductProvider>
                 <FilterProvider>
                     <AuthProvider>
-                        <WishlistProvider>
+                        <WishlistAndCartProvider>
                             <Router>
-                                <App />
+                                <ScrollToTop>
+                                    <App />
+                                </ScrollToTop>
                             </Router>
-                        </WishlistProvider>
+                        </WishlistAndCartProvider>
                     </AuthProvider>
                 </FilterProvider>
             </ProductProvider>

@@ -1,22 +1,23 @@
 import axios from "axios";
 
-export const deleteFromWishlist = async (
+export const deleteFromCartOrWishlist = async (
+    type,
     product,
-    setWishlist,
+    setType,
     setIsLoading
 ) => {
     try {
         setIsLoading(true);
-        const res = await axios.delete(`/api/user/wishlist/${product._id}`, {
+        const res = await axios.delete(`/api/user/${type}/${product._id}`, {
             headers: {
                 authorization: localStorage.getItem("token"),
             },
         });
         if (res.status === 200) {
-            setWishlist(res.data.wishlist);
+            setType(res.data[type]);
             setIsLoading(false);
         }
     } catch (err) {
-        console.log(err, "Error while deleting the product from wishlist");
+        console.log(err, `Error while deleting the product from ${type}`);
     }
 };
