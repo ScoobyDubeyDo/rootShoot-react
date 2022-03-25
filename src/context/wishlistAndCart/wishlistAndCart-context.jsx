@@ -20,10 +20,12 @@ const WishlistAndCartProvider = ({ children }) => {
                 });
                 if (res.status) {
                     setWishlist(res.data.wishlist);
-                    setIsLoading(false);
                 }
             } catch (err) {
+                setWishlist([]);
                 console.log(err.message, "error while getting wishlist");
+            } finally {
+                setIsLoading(false);
             }
         })();
         (async () => {
@@ -34,10 +36,12 @@ const WishlistAndCartProvider = ({ children }) => {
                 });
                 if (res.status) {
                     setCart(res.data.cart);
-                    setIsLoading(false);
                 }
             } catch (err) {
+                setCart([]);
                 console.log(err.message, "error while getting cart");
+            } finally {
+                setIsLoading(false);
             }
         })();
     }, [currentUser]);

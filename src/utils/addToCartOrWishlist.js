@@ -21,9 +21,10 @@ export const addToCartOrWishlist = async (
         );
         if (res.status === 201) {
             setType(res.data[type]);
-            setIsLoading(false);
         }
     } catch (err) {
         console.log(err, `Error while adding the product to ${type}`);
+    } finally {
+        setIsLoading(false);
     }
 };

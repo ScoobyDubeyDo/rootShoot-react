@@ -27,11 +27,12 @@ export const userSignup = async (
                         ...res.data.createdUser,
                     });
                     localStorage.setItem("token", res.data.encodedToken);
-                    setIsLoading(false);
                     navigate("/");
                 }
             } catch (err) {
                 console.log("Error while signing up", err);
+            } finally {
+                setIsLoading(false);
             }
         })();
     }

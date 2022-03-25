@@ -25,11 +25,12 @@ export const userSignin = async (
                         ...res.data.foundUser,
                     });
                     localStorage.setItem("token", res.data.encodedToken);
-                    setIsLoading(false);
                     navigate("/");
                 }
             } catch (err) {
                 console.log("Error while logging in", err);
+            } finally {
+                setIsLoading(false);
             }
         })();
     }

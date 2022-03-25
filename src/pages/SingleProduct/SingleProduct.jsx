@@ -25,10 +25,11 @@ export const SingleProduct = () => {
                 const res = await axios.get(`/api/products/${productId}`);
                 if (res.status === 200) {
                     setProductDetails(res.data.product);
-                    setIsLoading(false);
                 }
             } catch (err) {
                 console.log("Error while getting the product", err);
+            } finally {
+                setIsLoading(false);
             }
         })();
     }, []);

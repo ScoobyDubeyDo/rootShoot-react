@@ -15,9 +15,10 @@ export const deleteFromCartOrWishlist = async (
         });
         if (res.status === 200) {
             setType(res.data[type]);
-            setIsLoading(false);
         }
     } catch (err) {
         console.log(err, `Error while deleting the product from ${type}`);
+    } finally {
+        setIsLoading(false);
     }
 };

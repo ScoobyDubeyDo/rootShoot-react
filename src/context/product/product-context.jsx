@@ -15,10 +15,11 @@ const ProductProvider = ({ children }) => {
                 const res = await axios.get("/api/products");
                 if (res.status === 200) {
                     setProducts(res.data.products);
-                    setIsLoading(false);
                 }
             } catch (err) {
                 console.log("Error while getting products", err);
+            } finally {
+                setIsLoading(false);
             }
         })();
         (async () => {
@@ -27,10 +28,11 @@ const ProductProvider = ({ children }) => {
                 const res = await axios.get("/api/categories");
                 if (res.status === 200) {
                     setCategories(res.data.categories);
-                    setIsLoading(false);
                 }
             } catch (err) {
                 console.log("Error while getting categories", err);
+            } finally {
+                setIsLoading(false);
             }
         })();
     }, []);
