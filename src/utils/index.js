@@ -9,3 +9,4 @@ export { userSignup } from "./userSignup";
 export { userSignin } from "./userSignin";
 export { addToCartOrWishlist } from "./addToCartOrWishlist";
 export { deleteFromCartOrWishlist } from "./deleteFromCartOrWishlist";
+export { userSignout } from "./userSignout";

@@ -1,8 +1,14 @@
 .rootShoot-appbar {
     min-height: var(--appbar-height);
     background: var(--accent-color);
+    z-index: 1000;
 }
 
+.rootShoot-appbar-menu,
+.rootShoot-appbar .appbar-btns {
+    flex-basis: content;
+    margin-left: initial;
+}
 .rootShoot-search {
     outline: none;
     background: var(--secondary-bg-color)
@@ -13,16 +19,18 @@
     transition: var(--transition);
     width: 3.13rem;
     height: 3.13rem;
-    padding-left: 3rem;
+    flex-basis: 3.13rem;
+    padding-left: 3.13rem;
     color: transparent;
     cursor: pointer;
+    margin: 0 auto;
 }
 
 .rootShoot-search:hover {
     background-color: #ffffff;
 }
 .rootShoot-search:focus {
-    width: 35%;
+    flex-basis: 100%;
     color: var(--primary-text-color);
     background-color: #ffffff;
     border-color: var(--primary-bg-color);
@@ -37,18 +45,63 @@
     display: none;
 }
 
+.drawer {
+    transform: translate(-100%);
+    position: absolute;
+    inset: var(--appbar-height) 0 0;
+    background: var(--accent-color);
+    width: 100vw;
+    height: calc(100vh - var(--appbar-height));
+    transition: var(--transition);
+    color: var(--primary-text-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-transform: capitalize;
+}
+
+.drawer-open {
+    transform: translate(0%);
+}
+
+.drawer > ul {
+    gap: unset;
+}
+
+.drawer a {
+    color: var(--secondary-bg-color);
+    padding: 0.5rem;
+}
+
 @media (min-width: 600px) {
+    .rootShoot-appbar {
+        position: absolute;
+    }
+
     .rootShoot-search {
         cursor: auto;
-        position: absolute;
-        margin: 0 auto;
-        left: 0;
-        right: 0;
         height: 2.5rem;
-        width: 35%;
+        flex-basis: 35%;
     }
 
     .rootShoot-search:focus {
-        width: 40%;
+        flex-basis: 40%;
+    }
+
+    .rootShoot-appbar-menu {
+        display: none;
+    }
+
+    .drawer {
+        transform: translate(0%);
+        position: static;
+        width: auto;
+        height: var(--appbar-height);
+        margin-left: 1rem;
+    }
+
+    .drawer > ul {
+        flex-direction: row;
     }
 }

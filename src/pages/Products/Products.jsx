@@ -29,11 +29,12 @@ export const Products = () => {
                                 isChecked: true,
                             },
                         });
-                        setIsLoading(false);
                         navigate("/products", { replace: true });
                     }
                 } catch (err) {
                     console.log("Error while getting the category name", err);
+                } finally {
+                    setIsLoading(false);
                 }
             })();
     }, []);
