@@ -8,6 +8,8 @@ import { RiMenu4Line } from "react-icons/ri";
 import { useState, useRef, useEffect } from "react";
 import { userSignout } from "../../utils";
 import { useLockBodyScroll } from "../../hooks";
+import { SearchResults } from "./components";
+
 export const Navbar = () => {
     const { wishlist, cart } = useWishlistAndCart();
     const [drawer, setDrawer] = useState(false);
@@ -154,83 +156,22 @@ export const Navbar = () => {
                         className="rootShoot-search"
                         ref={searchRef}
                         onChange={(e) => {
-                            if (e.target.value === "") {
-                                setSearchOpen(false);
-                            } else {
-                                setSearchOpen(true);
-                                e.target.value &&
-                                    filterDispatch({
-                                        type: "SEARCH_TEXT",
-                                        payload: {
-                                            searchText: e.target.value,
-                                        },
-                                    });
-                            }
+                            valueChangeSearch(e, setSearchOpen, filterDispatch);
                         }}
                         onKeyUp={(e) => {
-                            if (e.key === "Enter") {
-                                if (location.pathname !== "/products") {
-                                    navigate("/products");
-                                }
-                                filterDispatch({
-                                    type: "SEARCH_PRODUCTS",
-                                    payload: {
-                                        searchText: e.target.value,
-                                    },
-                                });
-                                setSearchOpen(false);
-                            }
+                            keyPressSearch(
+                                e,
+                                location,
+                                navigate,
+                                filterDispatch,
+                                setSearchOpen
+                            );
                         }}
                     />
-                    <div
-                        className={`search-results vertical-list ${
-                            filterState.searchResults.length > 0 &&
-                            searchOpen &&
-                            "search-results-show"
-                        }`}
-                    >
-                        {filterState.searchResults.length > 0 &&
-                            filterState.searchResults.map((item) => (
-                                <div
-                                    key={item._id}
-                                    className="card search-result"
-                                    onClick={() => {
-                                        setSearchOpen(false);
-                                        console.log("asassa");
-                                        navigate(`/products/${item._id}`);
-                                    }}
-                                >
-                                    <div className="card-badge-green">
-                                        {item.type[0]}
-                                    </div>
-                                    <div className="card-body-horizontal">
-                                        <img
-                                            src={item.imgUrl}
-                                            alt={item.name}
-                                            className="card-side-image search-result-img"
-                                        />
-                                        <div className="card-side-content">
-                                            <h3 className="card-title text-noWrap">
-                                                {item.name}
-                                            </h3>
-                                            <p className="card-text">
-                                                Lorem ipsum dolor sit amet,
-                                                consectetur adipisicing elit. Ea
-                                                enim eligendi eos nam esse
-                                                quisquam necessitatibus dolorem
-                                                odio animi doloremque, quia
-                                                suscipit repellendus ipsum
-                                                fugiat vel molestiae. Officiis
-                                                eum illo quis facere deleniti
-                                                distinctio nam praesentium
-                                                asperiores iste. Cumque,
-                                                impedit.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                    </div>
+                    <SearchResults
+                        searchOpen={searchOpen}
+                        setSearchOpen={setSearchOpen}
+                    />
                 </div>
 
                 <div className="appbar-btns">
@@ -269,4 +210,40 @@ export const Navbar = () => {
             <div className="appbar-fixed-filler"></div>
         </>
     );
+};
+
+const valueChangeSearch = (e, setSearchOpen, filterDispatch) => {
+    if (e.target.value === "") {
+        setSearchOpen(false);
+    } else {
+        setSearchOpen(true);
+        e.target.value &&
+            filterDispatch({
+                type: "SEARCH_TEXT",
+                payload: {
+                    searchText: e.target.value,
+                },
+            });
+    }
+};
+
+const keyPressSearch = (
+    e,
+    location,
+    navigate,
+    filterDispatch,
+    setSearchOpen
+) => {
+    if (e.key === "Enter") {
+        if (location.pathname !== "/products") {
+            navigate("/products");
+        }
+        filterDispatch({
+            type: "SEARCH_PRODUCTS",
+            payload: {
+                searchText: e.target.value,
+            },
+        });
+        setSearchOpen(false);
+    }
 };

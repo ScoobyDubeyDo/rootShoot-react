@@ -14,6 +14,3 @@ export default function useLockBodyScroll(visible = true) {
         return () => (document.documentElement.style.overflow = originalStyle);
     }, [visible]); // Empty array ensures effect is only run on mount and unmount
 }
-
-// 9063295041 naveen
-//

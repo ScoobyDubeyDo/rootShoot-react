@@ -1,5 +1,5 @@
 import "./singleProduct.css";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useLoader } from "../../context";
@@ -10,6 +10,7 @@ const ProdDesc =
 export const SingleProduct = () => {
     const { productId } = useParams();
     const { setIsLoading } = useLoader();
+    const location = useLocation();
     const [productDetails, setProductDetails] = useState({
         imgUrl: "",
         name: "",
@@ -32,7 +33,7 @@ export const SingleProduct = () => {
                 setIsLoading(false);
             }
         })();
-    }, []);
+    }, [location.pathname]);
 
     return (
         <div className="single-product">
