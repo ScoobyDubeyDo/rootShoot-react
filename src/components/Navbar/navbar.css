@@ -16,26 +16,35 @@
         no-repeat 1rem center;
     border: none;
     border-radius: 5px;
-    transition: var(--transition);
-    width: 3.13rem;
-    height: 3.13rem;
-    flex-basis: 3.13rem;
+    width: 100%;
+    height: 100%;
     padding-left: 3.13rem;
-    color: transparent;
-    cursor: pointer;
-    margin: 0 auto;
 }
 
 .rootShoot-search:hover {
     background-color: #ffffff;
 }
 .rootShoot-search:focus {
-    flex-basis: 100%;
     color: var(--primary-text-color);
     background-color: #ffffff;
+    cursor: auto;
+}
+
+.search-box {
+    cursor: pointer;
+    margin: 0 auto;
+    width: 3.13rem;
+    height: 3.13rem;
+    border-radius: 5px;
+    flex-basis: 3.13rem;
+    transition: var(--transition);
+}
+
+.search-box:focus-within {
+    flex-basis: 100%;
     border-color: var(--primary-bg-color);
     box-shadow: 0 0 5px var(--primary-bg-color);
-    cursor: auto;
+    transition: var(--transition);
 }
 
 .rootShoot-search::-webkit-search-cancel-button,
@@ -59,6 +68,7 @@
     justify-content: space-evenly;
     align-items: center;
     text-transform: capitalize;
+    z-index: 1;
 }
 
 .drawer-open {
@@ -74,6 +84,62 @@
     padding: 0.5rem;
 }
 
+.search-results {
+    display: none;
+    position: fixed;
+    inset: var(--appbar-height) 0 auto;
+    max-height: 60%;
+    height: max-content;
+    overflow-y: auto;
+    overflow-x: hidden;
+    align-items: center;
+    padding: 1rem 1rem 0;
+    background: var(--secondary-bg-color);
+}
+
+.search-results::after {
+    z-index: 2;
+    position: sticky;
+    bottom: 0;
+    height: 1.5rem;
+    width: 100%;
+    content: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 0%,
+        var(--primary-bg-color) 100%
+    );
+    transform: scale(1.1);
+}
+
+.search-results-show {
+    display: flex;
+}
+
+.search-result-img {
+    max-width: 20%;
+    min-width: 10%;
+    aspect-ratio: 1/1;
+    max-height: 80%;
+}
+
+.search-result {
+    min-width: 100%;
+    /* max-height: 150px; */
+}
+
+.search-result .card-side-content {
+    max-width: 70%;
+}
+
+.search-result .card-text {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+}
+
 @media (min-width: 600px) {
     .rootShoot-appbar {
         position: absolute;
@@ -81,12 +147,6 @@
 
     .rootShoot-search {
         cursor: auto;
-        height: 2.5rem;
-        flex-basis: 35%;
-    }
-
-    .rootShoot-search:focus {
-        flex-basis: 40%;
     }
 
     .rootShoot-appbar-menu {
@@ -103,5 +163,26 @@
 
     .drawer > ul {
         flex-direction: row;
+    }
+
+    .search-box {
+        height: 2.5rem;
+        flex-basis: 35%;
+        position: relative;
+    }
+
+    .search-box:focus-within {
+        flex-basis: 40%;
+    }
+
+    .search-results {
+        width: 100%;
+        min-width: 20rem;
+        position: absolute;
+        inset: unset;
+        top: 3.5rem;
+        right: 0;
+        max-height: 30rem;
+        height: max-content;
     }
 }

@@ -1,5 +1,6 @@
 const filterProducts = (item, state) => {
     return (
+        item.name.toLowerCase().includes(state.searchText.toLowerCase()) &&
         item.price <= state.selectedMaxPrice &&
         item.type.some((ele) => {
             return [...state.selectedTypes].length > 0
