@@ -22,8 +22,13 @@ export const ItemDetails = () => {
                     </div>
                     {cart.map((item) => (
                         <div key={item._id} className="cart-price-pair">
-                            <p>{item.name}</p>
-                            <p>{`₹ ${item.price}`}</p>
+                            <p>
+                                {item.name}
+                                <span className="text-subtitle">
+                                    {item.qty > 1 ? `×${item.qty}` : ""}
+                                </span>
+                            </p>
+                            <p>{`₹ ${item.price * item.qty}`}</p>
                         </div>
                     ))}
                 </div>

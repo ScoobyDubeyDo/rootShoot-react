@@ -7,3 +7,7 @@
 .cart-price-pair > *:first-child {
     flex-grow: 1;
 }
+
+input[type="range"] {
+    width: 100%;
+}

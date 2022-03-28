@@ -5,6 +5,17 @@
     overflow: hidden;
 }
 
+.rootShoot-product-qty {
+    border-radius: 5rem;
+}
+
+.rootShoot-product-qty > span {
+    display: inline-block;
+    min-width: 1rem;
+    width: max-content;
+    text-align: center;
+}
+
 .rootShoot-prods-card:hover {
     transition: var(--transition);
     border-color: var(--primary-color);
