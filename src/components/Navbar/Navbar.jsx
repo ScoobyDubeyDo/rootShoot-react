@@ -117,7 +117,7 @@ export const Navbar = () => {
                                 className="rootShoot-link-reset heading-6 text-noWrap"
                                 to="/"
                             >
-                                (signout)
+                                profile
                             </Link>
                         </li>
                         <li

@@ -68,6 +68,10 @@
         grid-area: text;
     }
 
+    .hero > .bg-text h1 {
+        font-size: 3rem;
+    }
+
     .hero > .bg-empty > *,
     .hero > .bg-text > * {
         border-radius: unset;

@@ -12,7 +12,7 @@ export const Hero = () => {
             <section className="bg-image"></section>
             <section className="bg-text">
                 <div>
-                    <h1 className="heading-3 text-gutterBottom">
+                    <h1 className="heading-4 text-gutterBottom">
                         Plants made easy
                     </h1>
                     <p className="heading-6 rootShoot-text-align-justify text-gutterBottom">
