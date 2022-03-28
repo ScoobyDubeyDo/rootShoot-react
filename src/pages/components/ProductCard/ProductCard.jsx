@@ -66,7 +66,6 @@ export const ProductCard = ({ cardType, product, title }) => {
                                 <button
                                     onClick={(e) => {
                                         e.stopPropagation();
-
                                         if (currentUser?.encodedToken) {
                                             !cart.some(
                                                 (item) => item._id === _id
@@ -83,7 +82,9 @@ export const ProductCard = ({ cardType, product, title }) => {
                                                 : wishlist.some(
                                                       (item) => item._id === _id
                                                   )
-                                                ? console.log("buy now")
+                                                ? console.log(
+                                                      "I will add this feature in future"
+                                                  )
                                                 : navigate("/cart");
                                         } else navigate("/sign-in");
                                     }}

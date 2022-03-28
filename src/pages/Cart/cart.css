@@ -12,6 +12,11 @@
     text-align: left;
 }
 
+.cart-price-pair span {
+    padding-left: 0.5rem;
+    display: inline-block;
+}
+
 .cart-price-pair > *:first-child {
     flex-grow: 1;
 }

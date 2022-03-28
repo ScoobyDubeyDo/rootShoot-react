@@ -35,16 +35,7 @@ export const SearchResults = ({ searchOpen, setSearchOpen }) => {
                                 <h3 className="card-title text-noWrap">
                                     {item.name}
                                 </h3>
-                                <p className="card-text">
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipisicing elit. Ea enim eligendi eos nam
-                                    esse quisquam necessitatibus dolorem odio
-                                    animi doloremque, quia suscipit repellendus
-                                    ipsum fugiat vel molestiae. Officiis eum
-                                    illo quis facere deleniti distinctio nam
-                                    praesentium asperiores iste. Cumque,
-                                    impedit.
-                                </p>
+                                <p className="card-text">{item.prodDesc[0]}</p>
                             </div>
                         </div>
                     </div>

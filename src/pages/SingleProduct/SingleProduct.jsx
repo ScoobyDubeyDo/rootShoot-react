@@ -1,15 +1,17 @@
 import "./singleProduct.css";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useLoader } from "../../context";
-
-const ProdDesc =
-    "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero dicta sit, tenetur dolorem nobis distinctio. Aperiam blanditiis fugit quos? Vel eveniet nisi porro excepturi, voluptates atque iure. Atque numquam nihil pariatur inventore sit magnam, rem tempore ex, voluptas laudantium aperiam nulla! Quas eum sed, quidem eaque dolores facilis illo cumque v erit recusandae quibusdam accusantium totam pariatur optio. Veniam nihil nostrum id expedita quos unde ipsam dolor beatae dicta, distinctio asperiores.";
+import { useLoader, useWishlistAndCart, useAuth } from "../../context";
+import { BsFillBookmarkHeartFill, BsBookmarkHeart } from "react-icons/bs";
+import { addToCartOrWishlist, deleteFromCartOrWishlist } from "../../utils";
 
 export const SingleProduct = () => {
     const { productId } = useParams();
     const { setIsLoading } = useLoader();
+    const { currentUser } = useAuth();
+    const navigate = useNavigate();
+    const { wishlist, setWishlist, cart, setCart } = useWishlistAndCart();
     const location = useLocation();
     const [productDetails, setProductDetails] = useState({
         imgUrl: "",
@@ -17,6 +19,7 @@ export const SingleProduct = () => {
         price: "",
         rating: "",
         type: [],
+        prodDesc: [],
     });
 
     useEffect(() => {
@@ -49,24 +52,73 @@ export const SingleProduct = () => {
                 </p>
                 <div>
                     <p className="heading-5">{`₹ ${productDetails.price}`}</p>
-                    <label htmlFor="qty" className="heading-5">
-                        Quantity:&nbsp;
-                        <select name="qty" id="qty">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
-                    </label>
+                    {!wishlist.some((item) => item._id === productId) ? (
+                        <button
+                            className="icon-btn-green"
+                            onClick={() =>
+                                !currentUser?.encodedToken
+                                    ? navigate("/sign-in")
+                                    : addToCartOrWishlist(
+                                          "wishlist",
+                                          productDetails,
+                                          setWishlist,
+                                          setIsLoading
+                                      )
+                            }
+                        >
+                            <BsBookmarkHeart />
+                        </button>
+                    ) : (
+                        <button
+                            className="icon-btn-green"
+                            onClick={() =>
+                                deleteFromCartOrWishlist(
+                                    "wishlist",
+                                    productDetails,
+                                    setWishlist,
+                                    setIsLoading
+                                )
+                            }
+                        >
+                            <BsFillBookmarkHeartFill />
+                        </button>
+                    )}
                 </div>
-                <p className="text-body-lg rootShoot-text-align-justify text-gutterBottom">
-                    {ProdDesc}
-                </p>
-                <button className="btn-filled-green rootShoot-full-width text-gutterBottom">
+                {productDetails.prodDesc.map((text) => (
+                    <p
+                        key={text}
+                        className="text-body-lg rootShoot-text-align-justify text-gutterBottom"
+                    >
+                        {text}
+                    </p>
+                ))}
+                <button
+                    onClick={() =>
+                        console.log("I will add this feature in future")
+                    }
+                    className="btn-filled-green rootShoot-full-width text-gutterBottom"
+                >
                     buy now
                 </button>
-                <button className="btn-outlined-green rootShoot-full-width text-gutterBottom">
-                    add to cart
+                <button
+                    onClick={async (e) => {
+                        e.stopPropagation();
+                        if (currentUser?.encodedToken) {
+                            !cart.some((item) => item._id === productId)
+                                ? addToCartOrWishlist(
+                                      "cart",
+                                      productDetails,
+                                      setCart,
+                                      setIsLoading
+                                  )
+                                : navigate("/cart");
+                        } else navigate("/sign-in");
+                    }}
+                    className="btn-outlined-green rootShoot-full-width text-gutterBottom"
+                >
+                    {!cart.some((item) => item._id === productId)
+                        ? "Add to cart"
+                        : "go to cart"}
                 </button>
             </div>
         </div>
