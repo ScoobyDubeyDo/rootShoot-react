@@ -3,15 +3,18 @@ import {
     updateRating,
     updateTypes,
     updateSortWay,
+    searchProducts,
 } from "../utils";
 
 export const initialFilterState = {
     initialData: [],
     products: [],
+    searchResults: [],
     selectedMaxPrice: 1599,
     selectedTypes: [],
     selectedRating: 0,
     sortStrategy: "",
+    searchText: "",
 };
 
 export const filterReducer = (state, action) => {
@@ -37,6 +40,12 @@ export const filterReducer = (state, action) => {
                 products: action.payload.products,
                 initialData: action.payload.products,
             };
+
+        case "SEARCH_TEXT":
+            return searchProducts(state, action.payload.searchText);
+
+        case "SEARCH_PRODUCTS":
+            return searchProducts(state, action.payload.searchText, true);
 
         case "CLEAR":
             return {
