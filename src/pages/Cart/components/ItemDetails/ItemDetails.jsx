@@ -25,7 +25,7 @@ export const ItemDetails = () => {
                             <p>
                                 {item.name}
                                 <span className="text-subtitle">
-                                    {item.qty > 1 ? `×${item.qty}` : ""}
+                                    {`×${item.qty}`}
                                 </span>
                             </p>
                             <p>{`₹ ${item.price * item.qty}`}</p>

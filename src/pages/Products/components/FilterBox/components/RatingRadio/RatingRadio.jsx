@@ -25,6 +25,7 @@ export const RatingRadio = ({ starsArray }) => {
                             id={star}
                             name="star"
                             value={star}
+                            className="rootShoot-radio"
                         />
                         <span>
                             {` ${star}  `} <FaStar /> and above

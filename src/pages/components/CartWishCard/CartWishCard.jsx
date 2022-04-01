@@ -1,5 +1,5 @@
-import { FaTimesCircle } from "react-icons/fa";
-import { MdDeleteForever } from "react-icons/md";
+import { IoMdClose } from "react-icons/io";
+import { MdOutlineDelete } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { useAuth, useWishlistAndCart, useLoader } from "../../../context";
 import {
@@ -16,13 +16,13 @@ export const CartWishCard = ({ product, cardType }) => {
 
     return (
         <div
-            className="card rootShoot-prods-card"
+            className="card-hover rootShoot-prods-card"
             onClick={() => {
                 navigate(`/products/${_id}`);
             }}
         >
             <div
-                className="card-badge-green"
+                className="card-top-btn icon-btn-ghost-sm"
                 onClick={(e) => {
                     e.stopPropagation();
                     if (cardType === "cart") {
@@ -48,9 +48,9 @@ export const CartWishCard = ({ product, cardType }) => {
                 }}
             >
                 {cardType === "cart" ? (
-                    <FaTimesCircle />
+                    <IoMdClose />
                 ) : (
-                    <MdDeleteForever size={24} />
+                    <MdOutlineDelete size={20} />
                 )}
             </div>
             <div className="card-body-horizontal">
@@ -69,7 +69,7 @@ export const CartWishCard = ({ product, cardType }) => {
                         {cardType === "cart" && (
                             <div className="rootShoot-product-qty">
                                 <button
-                                    className="icon-btn-gray-sm"
+                                    className="icon-btn-green-sm"
                                     onClick={(e) => {
                                         e.stopPropagation();
                                         qty <= 1
@@ -91,7 +91,7 @@ export const CartWishCard = ({ product, cardType }) => {
                                 </button>
                                 <span>{qty}</span>
                                 <button
-                                    className="icon-btn-gray-sm"
+                                    className="icon-btn-green-sm"
                                     onClick={(e) => {
                                         e.stopPropagation();
                                         cartItemQtyUpdate(

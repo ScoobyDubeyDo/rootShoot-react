@@ -21,6 +21,7 @@ export const TypesCheckbox = ({ categoriesArray }) => {
                         >
                             <input
                                 id={`${type.toLowerCase()}`}
+                                className="rootShoot-radio"
                                 name="types"
                                 checked={filterState.selectedTypes.includes(
                                     type

@@ -11,9 +11,9 @@ import { useLockBodyScroll } from "../../hooks";
 import { SearchResults } from "./components";
 
 export const Navbar = () => {
-    const { wishlist, cart } = useWishlistAndCart();
+    const { wishlist, cart, setWishlist, setCart } = useWishlistAndCart();
     const [drawer, setDrawer] = useState(false);
-    const { setCurrentUser } = useAuth();
+    const { setCurrentUser, currentUser } = useAuth();
     const { filterState, filterDispatch } = useFilter();
     const [bodyLock, setBodyLock] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
@@ -100,7 +100,7 @@ export const Navbar = () => {
                                     wishlist
                                 </Link>
                                 {wishlist.length > 0 && (
-                                    <span className="number-badge-blue">
+                                    <span className="number-badge-yellow">
                                         {wishlist.length}
                                     </span>
                                 )}
@@ -110,14 +110,22 @@ export const Navbar = () => {
                             onClick={() => {
                                 setDrawer(false);
                                 setBodyLock(false);
-                                userSignout(setCurrentUser);
+                                if (!currentUser.encodedToken)
+                                    navigate("/sign-in");
+                                else {
+                                    userSignout(setCurrentUser);
+                                    setWishlist([]);
+                                    setCart([]);
+                                }
                             }}
                         >
                             <Link
                                 className="rootShoot-link-reset heading-6 text-noWrap"
                                 to="/"
                             >
-                                profile
+                                {currentUser.encodedToken
+                                    ? "log out"
+                                    : "sign in"}
                             </Link>
                         </li>
                         <li
@@ -180,10 +188,10 @@ export const Navbar = () => {
                             to="/wishlist"
                             className="rootShoot-link-reset icon-btn-green"
                         >
-                            <BsFillBookmarkHeartFill />
+                            <BsFillBookmarkHeartFill size={18} />
                         </Link>
                         {wishlist.length > 0 && (
-                            <span className="number-badge-blue">
+                            <span className="number-badge-yellow">
                                 {wishlist.length}
                             </span>
                         )}
@@ -197,10 +205,10 @@ export const Navbar = () => {
                             to="cart"
                             className="rootShoot-link-reset icon-btn-green"
                         >
-                            <FaShoppingCart />
+                            <FaShoppingCart size={19} />
                         </Link>
                         {cart.length > 0 && (
-                            <span className="number-badge-blue">
+                            <span className="number-badge-yellow">
                                 {cart.length}
                             </span>
                         )}

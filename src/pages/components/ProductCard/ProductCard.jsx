@@ -12,7 +12,7 @@ export const ProductCard = ({ cardType, product, title }) => {
 
     return (
         <div
-            className={`card rootShoot-${cardType}-card`}
+            className={`card-hover rootShoot-${cardType}-card`}
             onClick={() => {
                 if (cardType === "types") {
                     return navigate(`/products/type/${_id}`);

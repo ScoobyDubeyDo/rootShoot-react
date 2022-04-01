@@ -17,7 +17,7 @@ export const ProductsList = () => {
                     ))}
                 </CardLayout>
             ) : (
-                <EmptyPageHolder />
+                <EmptyPageHolder size={300} />
             )}
         </>
     );

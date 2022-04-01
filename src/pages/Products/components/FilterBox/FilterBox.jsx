@@ -22,12 +22,20 @@ export const FilterBox = ({ mobileFilterShow, setMobileFilterShow }) => {
                 <RatingRadio starsArray={stars} />
                 <SortbyRadio sortArray={sortTypes} />
             </div>
-            <button
-                onClick={() => setMobileFilterShow(false)}
-                className="heading-6 rootShoot-hidden btn-filled-green rootShoot-full-width"
-            >
-                Apply
-            </button>
+            <div className="rootShoot-full-width filter-close">
+                <button
+                    onClick={() => setMobileFilterShow(false)}
+                    className="heading-6 rootShoot-hidden btn-outlined-green "
+                >
+                    close
+                </button>
+                <button
+                    onClick={() => setMobileFilterShow(false)}
+                    className="heading-6 rootShoot-hidden btn-filled-green "
+                >
+                    apply
+                </button>
+            </div>
         </div>
     );
 };

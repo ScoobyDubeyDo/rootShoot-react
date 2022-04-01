@@ -16,6 +16,14 @@
     text-align: center;
 }
 
+.card-top-btn {
+    position: absolute;
+    text-align: center;
+    top: 0;
+    right: 0;
+    z-index: 2;
+}
+
 .rootShoot-prods-card:hover {
     transition: var(--transition);
     border-color: var(--primary-color);
@@ -37,6 +45,10 @@
 }
 
 @media (min-width: 600px) {
+    .rootShoot-prods-card {
+        max-width: 18rem;
+    }
+
     .rootShoot-prods-card:hover .rootShoot-prods-card-img {
         transform: scale(1.1);
     }

@@ -1,12 +1,9 @@
 import "./footer.css";
 import { imgLogo } from "../images";
-
-import {
-    FaGithubSquare,
-    FaInstagramSquare,
-    FaTwitterSquare,
-    FaLinkedin,
-} from "react-icons/fa";
+import { VscGithub } from "react-icons/vsc";
+import { AiOutlineInstagram } from "react-icons/ai";
+import { RiTwitterLine } from "react-icons/ri";
+import { FiLinkedin } from "react-icons/fi";
 
 export const Footer = () => {
     return (
@@ -17,18 +14,38 @@ export const Footer = () => {
                 by Aman
             </span>
             <div className="media-links">
-                <button className="icon-btn-green">
-                    <FaInstagramSquare />
-                </button>
-                <button className="icon-btn-green">
-                    <FaGithubSquare />
-                </button>
-                <button className="icon-btn-green">
-                    <FaTwitterSquare />
-                </button>
-                <button className="icon-btn-green">
-                    <FaLinkedin />
-                </button>
+                <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href="https://www.instagram.com/scoobydubeydo/"
+                    className="icon-btn-green"
+                >
+                    <AiOutlineInstagram />
+                </a>
+                <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href="https://github.com/aman-can/"
+                    className="icon-btn-green"
+                >
+                    <VscGithub />
+                </a>
+                <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href="https://twitter.com/ScoobyDubeyDo"
+                    className="icon-btn-green"
+                >
+                    <RiTwitterLine />
+                </a>
+                <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href="https://www.linkedin.com/in/dubey-aman/"
+                    className="icon-btn-green"
+                >
+                    <FiLinkedin />
+                </a>
             </div>
             <span className="copyright rootShoot-margin-center text-subtitle">
                 copyright &copy; 2021 all rights reserved by rootShoot.

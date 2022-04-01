@@ -9,6 +9,15 @@
     flex-basis: content;
     margin-left: initial;
 }
+
+.number-badge-yellow {
+    font-size: .8rem;
+}
+
+.rootShoot-link-reset.icon-btn-green{
+    color: var(--secondary-bg-color);
+}
+
 .rootShoot-search {
     outline: none;
     background: var(--secondary-bg-color)
@@ -41,7 +50,7 @@
 }
 
 .search-box:focus-within {
-    flex-basis: 100%;
+    flex-basis: 65%;
     border-color: var(--primary-bg-color);
     box-shadow: 0 0 5px var(--primary-bg-color);
     transition: var(--transition);

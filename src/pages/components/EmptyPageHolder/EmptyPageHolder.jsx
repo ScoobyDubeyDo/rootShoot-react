@@ -1,7 +1,7 @@
 import Lottie from "react-lottie";
 import empty from "./empty.json";
 
-export const EmptyPageHolder = () => {
+export const EmptyPageHolder = ({ size = 250 }) => {
     return (
         <Lottie
             isClickToPauseDisabled
@@ -13,8 +13,8 @@ export const EmptyPageHolder = () => {
                     preserveAspectRatio: "xMidYMid slice",
                 },
             }}
-            height={250}
-            width={250}
+            height={size}
+            width={size}
             speed={1.5}
         />
     );

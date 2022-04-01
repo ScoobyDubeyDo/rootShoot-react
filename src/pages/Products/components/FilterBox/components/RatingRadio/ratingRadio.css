@@ -1,3 +1,7 @@
 .star-display {
     display: block;
 }
+
+.rootShoot-radio{
+    accent-color: var(--accent-color);
+}

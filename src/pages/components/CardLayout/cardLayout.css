@@ -5,6 +5,6 @@
     padding: 1.5rem;
     grid-auto-flow: row;
     align-content: flex-start;
-    justify-items: flex-start;
+    justify-items: center;
     align-items: flex-start;
 }

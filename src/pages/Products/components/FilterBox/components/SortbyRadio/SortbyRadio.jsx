@@ -18,6 +18,7 @@ export const SortbyRadio = ({ sortArray }) => {
                             type="radio"
                             value={sort}
                             checked={filterState.sortStrategy === sort}
+                            className="rootShoot-radio"
                             onChange={(e) =>
                                 filterDispatch({
                                     type: "SORT_BY_PRICE",

@@ -12,38 +12,44 @@ const WishlistAndCartProvider = ({ children }) => {
     const { setIsLoading } = useLoader();
 
     useEffect(() => {
-        (async () => {
-            try {
-                setIsLoading(true);
-                const res = await axios.get("/api/user/wishlist", {
-                    headers: { authorization: localStorage.getItem("token") },
-                });
-                if (res.status) {
-                    setWishlist(res.data.wishlist);
+        if (currentUser?.encodedToken) {
+            (async () => {
+                try {
+                    setIsLoading(true);
+                    const res = await axios.get("/api/user/wishlist", {
+                        headers: {
+                            authorization: localStorage.getItem("token"),
+                        },
+                    });
+                    if (res.status) {
+                        setWishlist(res.data.wishlist);
+                    }
+                } catch (err) {
+                    setWishlist([]);
+                    console.log(err.message, "error while getting wishlist");
+                } finally {
+                    setIsLoading(false);
                 }
-            } catch (err) {
-                setWishlist([]);
-                console.log(err.message, "error while getting wishlist");
-            } finally {
-                setIsLoading(false);
-            }
-        })();
-        (async () => {
-            try {
-                setIsLoading(true);
-                const res = await axios.get("/api/user/cart", {
-                    headers: { authorization: localStorage.getItem("token") },
-                });
-                if (res.status) {
-                    setCart(res.data.cart);
+            })();
+            (async () => {
+                try {
+                    setIsLoading(true);
+                    const res = await axios.get("/api/user/cart", {
+                        headers: {
+                            authorization: localStorage.getItem("token"),
+                        },
+                    });
+                    if (res.status) {
+                        setCart(res.data.cart);
+                    }
+                } catch (err) {
+                    setCart([]);
+                    console.log(err.message, "error while getting cart");
+                } finally {
+                    setIsLoading(false);
                 }
-            } catch (err) {
-                setCart([]);
-                console.log(err.message, "error while getting cart");
-            } finally {
-                setIsLoading(false);
-            }
-        })();
+            })();
+        }
     }, [currentUser]);
 
     return (

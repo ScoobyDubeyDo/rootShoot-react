@@ -13,6 +13,14 @@
     justify-content: space-between;
 }
 
+.filter-close {
+    gap: 1rem;
+    max-height: 4rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
 .filter-box > *:first-child > * {
     margin: 1rem 0 0.5rem 0;
 }
