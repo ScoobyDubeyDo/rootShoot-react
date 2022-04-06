@@ -1,0 +1,10 @@
+.user-profile-img {
+    min-width: 10rem;
+    min-height: 10rem;
+}
+
+@media (min-width: 600px) {
+    .profile-box {
+        min-width: 30rem;
+    }
+}

@@ -11,11 +11,9 @@ export const PrivateRoute = ({ switchPath = true }) => {
             <Navigate to="/sign-in" replace />
         );
     }
-    if (!switchPath) {
-        return !currentUser?.encodedToken ? (
-            <Outlet />
-        ) : (
-            <Navigate to="/" replace />
-        );
-    }
+    return !currentUser?.encodedToken ? (
+        <Outlet />
+    ) : (
+        <Navigate to="/" replace />
+    );
 };
