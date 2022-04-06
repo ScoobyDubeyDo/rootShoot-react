@@ -86,8 +86,8 @@ export const Signin = () => {
                                 onClick={(e) =>
                                     userSignin(
                                         e,
-                                        "a@aa.aa",
-                                        "aaaaaaaa",
+                                        "karishma@kaa.karishma",
+                                        "karishma",
                                         setFieldErrors,
                                         setCurrentUser,
                                         navigate,

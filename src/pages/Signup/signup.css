@@ -9,8 +9,7 @@
     background-color: var(--primary-bg-color);
 }
 
-.rootShoot-modal .modal-header > *:first-child,
-.rootShoot-modal *[for="remember me"] {
+.rootShoot-modal .modal-header > *:first-child {
     margin-left: 16px;
 }
 
