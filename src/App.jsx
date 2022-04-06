@@ -8,6 +8,7 @@ import {
     SingleProduct,
     Wishlist,
     FourOFour,
+    UserProfile,
 } from "./pages";
 import { Navbar, Footer, PrivateRoute, Spinner } from "./components";
 import { useLoader } from "./context";
@@ -29,6 +30,7 @@ function App() {
                     path="products/type/:categoryId"
                     element={<Products />}
                 />
+
                 <Route path="products/:productId" element={<SingleProduct />} />
                 <Route element={<PrivateRoute switchPath={false} />}>
                     <Route path="sign-up" element={<Signup />} />
@@ -36,6 +38,7 @@ function App() {
                 </Route>
                 <Route element={<PrivateRoute />}>
                     <Route path="wishlist" element={<Wishlist />} />
+                    <Route path="profile" element={<UserProfile />} />
                     <Route path="cart" element={<Cart />}>
                         <Route index element={<ItemDetails />} />
                         <Route

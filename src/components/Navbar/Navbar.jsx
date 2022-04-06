@@ -2,18 +2,17 @@ import "./navbar.css";
 import { imgLogo } from "../images";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
+import { HiUser } from "react-icons/hi";
 import { BsFillBookmarkHeartFill } from "react-icons/bs";
-import { useWishlistAndCart, useAuth, useFilter } from "../../context";
+import { useWishlistAndCart, useFilter } from "../../context";
 import { RiMenu4Line } from "react-icons/ri";
 import { useState, useRef, useEffect } from "react";
-import { userSignout } from "../../utils";
 import { useLockBodyScroll } from "../../hooks";
 import { SearchResults } from "./components";
 
 export const Navbar = () => {
-    const { wishlist, cart, setWishlist, setCart } = useWishlistAndCart();
+    const { wishlist, cart } = useWishlistAndCart();
     const [drawer, setDrawer] = useState(false);
-    const { setCurrentUser, currentUser } = useAuth();
     const { filterState, filterDispatch } = useFilter();
     const [bodyLock, setBodyLock] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
@@ -92,6 +91,20 @@ export const Navbar = () => {
                                 setBodyLock(false);
                             }}
                         >
+                            <Link
+                                to="/profile"
+                                className="rootShoot-link-reset heading-6 text-noWrap"
+                            >
+                                Profile
+                            </Link>
+                        </li>
+                        <li
+                            className="rootShoot-hidden"
+                            onClick={() => {
+                                setDrawer(false);
+                                setBodyLock(false);
+                            }}
+                        >
                             <div className="badge-container">
                                 <Link
                                     className="rootShoot-link-reset heading-6 text-noWrap"
@@ -105,41 +118,6 @@ export const Navbar = () => {
                                     </span>
                                 )}
                             </div>
-                        </li>
-                        <li
-                            onClick={() => {
-                                setDrawer(false);
-                                setBodyLock(false);
-                                if (!currentUser.encodedToken)
-                                    navigate("/sign-in");
-                                else {
-                                    userSignout(setCurrentUser);
-                                    setWishlist([]);
-                                    setCart([]);
-                                }
-                            }}
-                        >
-                            <Link
-                                className="rootShoot-link-reset heading-6 text-noWrap"
-                                to="/"
-                            >
-                                {currentUser.encodedToken
-                                    ? "log out"
-                                    : "sign in"}
-                            </Link>
-                        </li>
-                        <li
-                            onClick={() => {
-                                setDrawer(false);
-                                setBodyLock(false);
-                            }}
-                        >
-                            <Link
-                                className="rootShoot-link-reset heading-6 text-noWrap"
-                                to="/"
-                            >
-                                About us
-                            </Link>
                         </li>
                     </ul>
                     <Link
@@ -212,6 +190,14 @@ export const Navbar = () => {
                                 {cart.length}
                             </span>
                         )}
+                    </div>
+                    <div className="badge-container rootShoot-shown ">
+                        <Link
+                            to="/profile"
+                            className="rootShoot-link-reset icon-btn-green"
+                        >
+                            <HiUser size={22} />
+                        </Link>
                     </div>
                 </div>
             </div>
