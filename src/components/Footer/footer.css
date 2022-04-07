@@ -1,10 +1,26 @@
 footer {
     background-color: var(--primary-color);
-    display: flex;
     color: var(--secondary-bg-color);
-    padding: 1rem;
-    flex-direction: column;
-    align-items: center;
+    padding: 2rem;
+    padding-bottom: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: unset;
+}
+
+footer > div > span:first-child {
+    margin: 0 auto;
+    width: 5rem;
+}
+
+.footer-text {
+    justify-content: space-around;
+    flex-grow: 1;
+    max-width: 35rem;
+}
+
+.media-links {
+    align-self: center;
 }
 
 .media-links > * > * {
@@ -12,34 +28,17 @@ footer {
     color: var(--primary-text-color);
 }
 
-.statement {
-    display: flex;
-    align-items: center;
-}
-
-.statement > *:first-child {
-    width: 3.5rem;
-    height: 3.5rem;
-    transition: var(--transition);
-    margin-inline: 0.3rem;
-}
-
-.statement > *:first-child:hover {
-    transform: translateY(-10px);
-    transition: var(--transition);
-}
-
-.media-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    width: 100%;
-    justify-content: space-evenly;
-    padding: 1rem;
-}
-
 @media (min-width: 600px) {
-    .media-links {
-        width: 40rem;
+    footer {
+        padding-inline: 4rem;
+    }
+    .sub-footer {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    footer > div > span:first-child {
+        margin: unset;
     }
 }
