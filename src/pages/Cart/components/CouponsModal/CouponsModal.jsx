@@ -46,19 +46,19 @@ export const CouponsModal = ({
     useLockBodyScroll();
 
     return (
-        <div class="modal-sm">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title heading-5">APPLY COUPON</h1>
+        <div className="modal-sm">
+            <div className="modal-dialog">
+                <div className="modal-content">
+                    <div className="modal-header">
+                        <h1 className="modal-title heading-5">APPLY COUPON</h1>
                         <button
                             onClick={() => setCouponModal(false)}
-                            class="icon-btn-ghost-sm modal-close-btn"
+                            className="icon-btn-ghost-sm modal-close-btn"
                         >
                             <GrClose />
                         </button>
                     </div>
-                    <div class="modal-header">
+                    <div className="modal-header">
                         <input
                             type="text"
                             placeholder="Coupon Code"
@@ -67,13 +67,13 @@ export const CouponsModal = ({
                         />
                         <button
                             onClick={() => applyCoupon()}
-                            class="btn-filled-green modal-close-btn"
+                            className="btn-filled-green modal-close-btn"
                         >
                             Apply
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <p class="text-body-lg">
+                    <div className="modal-body">
+                        <div className="text-body-lg">
                             <p className="coupon-error">{notApplicable}</p>
                             {!!availableCouponsLength.length && (
                                 <p className="heading-6 text-gutterBottom">
@@ -84,6 +84,7 @@ export const CouponsModal = ({
                                 (coupon) =>
                                     coupon.minimumPrice <= totalMRP && (
                                         <div
+                                            key={coupon.code}
                                             className="coupon-code-wrapper"
                                             onClick={() => {
                                                 setCouponInput(coupon.code);
@@ -105,7 +106,10 @@ export const CouponsModal = ({
                             {availableCoupons.map(
                                 (coupon) =>
                                     coupon.minimumPrice > totalMRP && (
-                                        <div className="coupon-code-wrapper-notapplicable">
+                                        <div
+                                            key={coupon.code}
+                                            className="coupon-code-wrapper-notapplicable"
+                                        >
                                             <p className="coupon-code">
                                                 {coupon.code}
                                             </p>
@@ -113,7 +117,7 @@ export const CouponsModal = ({
                                         </div>
                                     )
                             )}
-                        </p>
+                        </div>
                     </div>
                 </div>
             </div>

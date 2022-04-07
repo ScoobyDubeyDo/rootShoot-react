@@ -2,13 +2,13 @@ import "./singleProduct.css";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useLoader, useWishlistAndCart, useAuth } from "../../context";
+import { useLoaderOrToast, useWishlistAndCart, useAuth } from "../../context";
 import { BsFillBookmarkHeartFill, BsBookmarkHeart } from "react-icons/bs";
 import { addToCartOrWishlist, deleteFromCartOrWishlist } from "../../utils";
 
 export const SingleProduct = () => {
     const { productId } = useParams();
-    const { setIsLoading } = useLoader();
+    const { setIsLoading, setToastMessage } = useLoaderOrToast();
     const { currentUser } = useAuth();
     const navigate = useNavigate();
     const { wishlist, setWishlist, cart, setCart } = useWishlistAndCart();
@@ -31,7 +31,10 @@ export const SingleProduct = () => {
                     setProductDetails(res.data.product);
                 }
             } catch (err) {
-                console.log("Error while getting the product", err);
+                setToastMessage({
+                    type: "red",
+                    text: err.message,
+                });
             } finally {
                 setIsLoading(false);
             }
@@ -62,7 +65,8 @@ export const SingleProduct = () => {
                                           "wishlist",
                                           productDetails,
                                           setWishlist,
-                                          setIsLoading
+                                          setIsLoading,
+                                          setToastMessage
                                       )
                             }
                         >
@@ -76,7 +80,8 @@ export const SingleProduct = () => {
                                     "wishlist",
                                     productDetails,
                                     setWishlist,
-                                    setIsLoading
+                                    setIsLoading,
+                                    setToastMessage
                                 )
                             }
                         >
@@ -109,7 +114,8 @@ export const SingleProduct = () => {
                                       "cart",
                                       productDetails,
                                       setCart,
-                                      setIsLoading
+                                      setIsLoading,
+                                      setToastMessage
                                   )
                                 : navigate("/cart");
                         } else navigate("/sign-in");

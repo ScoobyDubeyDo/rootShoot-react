@@ -2,12 +2,16 @@ import "./productCard.css";
 import { FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { addToCartOrWishlist } from "../../../utils";
-import { useWishlistAndCart, useAuth, useLoader } from "../../../context";
+import {
+    useWishlistAndCart,
+    useAuth,
+    useLoaderOrToast,
+} from "../../../context";
 export const ProductCard = ({ cardType, product, title }) => {
     const navigate = useNavigate();
     const { cart, wishlist, setWishlist, setCart } = useWishlistAndCart();
     const { currentUser } = useAuth();
-    const { setIsLoading } = useLoader();
+    const { setIsLoading, setToastMessage } = useLoaderOrToast();
     const { _id, rating, imgUrl, price, type } = product;
 
     return (
@@ -77,7 +81,8 @@ export const ProductCard = ({ cardType, product, title }) => {
                                                       "cart",
                                                       product,
                                                       setCart,
-                                                      setIsLoading
+                                                      setIsLoading,
+                                                      setToastMessage
                                                   )
                                                 : wishlist.some(
                                                       (item) => item._id === _id
@@ -107,7 +112,8 @@ export const ProductCard = ({ cardType, product, title }) => {
                                                       "wishlist",
                                                       product,
                                                       setWishlist,
-                                                      setIsLoading
+                                                      setIsLoading,
+                                                      setToastMessage
                                                   )
                                                 : navigate("/wishlist");
                                         } else navigate("/sign-in");

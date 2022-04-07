@@ -20,7 +20,6 @@ export const SearchResults = ({ searchOpen, setSearchOpen }) => {
                         className="card search-result"
                         onClick={() => {
                             setSearchOpen(false);
-                            console.log("asassa");
                             navigate(`/products/${item._id}`);
                         }}
                     >

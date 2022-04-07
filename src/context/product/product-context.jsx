@@ -1,13 +1,13 @@
 import axios from "axios";
 import { createContext, useContext, useState, useEffect } from "react";
-import { useLoader } from "../loader/loader-context";
+import { useLoaderOrToast } from "../loader/loader-context";
 
 const ProductContext = createContext();
 
 const ProductProvider = ({ children }) => {
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
-    const { setIsLoading } = useLoader();
+    const { setIsLoading, setToastMessage } = useLoaderOrToast();
     useEffect(() => {
         (async () => {
             try {
@@ -17,7 +17,10 @@ const ProductProvider = ({ children }) => {
                     setProducts(res.data.products);
                 }
             } catch (err) {
-                console.log("Error while getting products", err);
+                setToastMessage({
+                    type: "red",
+                    text: err.message,
+                });
             } finally {
                 setIsLoading(false);
             }
@@ -30,7 +33,10 @@ const ProductProvider = ({ children }) => {
                     setCategories(res.data.categories);
                 }
             } catch (err) {
-                console.log("Error while getting categories", err);
+                setToastMessage({
+                    type: "red",
+                    text: err.message,
+                });
             } finally {
                 setIsLoading(false);
             }

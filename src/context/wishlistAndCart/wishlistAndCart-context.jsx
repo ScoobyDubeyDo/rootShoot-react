@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createContext, useContext, useState, useEffect } from "react";
 import { useAuth } from "../auth/auth-context";
-import { useLoader } from "../loader/loader-context";
+import { useLoaderOrToast } from "../loader/loader-context";
 
 const WishlistAndCartContext = createContext();
 
@@ -9,7 +9,7 @@ const WishlistAndCartProvider = ({ children }) => {
     const [wishlist, setWishlist] = useState([]);
     const [cart, setCart] = useState([]);
     const { currentUser } = useAuth();
-    const { setIsLoading } = useLoader();
+    const { setIsLoading, setToastMessage } = useLoaderOrToast();
 
     useEffect(() => {
         if (currentUser?.encodedToken) {
@@ -26,7 +26,10 @@ const WishlistAndCartProvider = ({ children }) => {
                     }
                 } catch (err) {
                     setWishlist([]);
-                    console.log(err.message, "error while getting wishlist");
+                    setToastMessage({
+                        type: "red",
+                        text: err.message,
+                    });
                 } finally {
                     setIsLoading(false);
                 }
@@ -44,7 +47,10 @@ const WishlistAndCartProvider = ({ children }) => {
                     }
                 } catch (err) {
                     setCart([]);
-                    console.log(err.message, "error while getting cart");
+                    setToastMessage({
+                        type: "red",
+                        text: err.message,
+                    });
                 } finally {
                     setIsLoading(false);
                 }

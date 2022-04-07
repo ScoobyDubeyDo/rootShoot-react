@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { useAuth, useLoader } from "../../context";
+import { useAuth, useLoaderOrToast } from "../../context";
 import { userSignin } from "../../utils";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -9,7 +9,7 @@ export const Signin = () => {
     const navigate = useNavigate();
     const [fieldErrors, setFieldErrors] = useState({});
     const { setCurrentUser } = useAuth();
-    const { setIsLoading } = useLoader();
+    const { setIsLoading, setToastMessage } = useLoaderOrToast();
     return (
         <div className="modal-sm rootShoot-modal" id="modal-1">
             <div className="modal-dialog">
@@ -34,7 +34,8 @@ export const Signin = () => {
                                     setFieldErrors,
                                     setCurrentUser,
                                     navigate,
-                                    setIsLoading
+                                    setIsLoading,
+                                    setToastMessage
                                 )
                             }
                         >
@@ -91,7 +92,8 @@ export const Signin = () => {
                                         setFieldErrors,
                                         setCurrentUser,
                                         navigate,
-                                        setIsLoading
+                                        setIsLoading,
+                                        setToastMessage
                                     )
                                 }
                             />

@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import "./signup.css";
-import { useAuth, useLoader } from "../../context";
+import { useAuth, useLoaderOrToast } from "../../context";
 import { userSignup } from "../../utils";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -11,7 +11,7 @@ export const Signup = () => {
     const navigate = useNavigate();
     const [fieldErrors, setFieldErrors] = useState({});
     const { setCurrentUser } = useAuth();
-    const { setIsLoading } = useLoader();
+    const { setIsLoading, setToastMessage } = useLoaderOrToast();
 
     return (
         <div className="modal-sm rootShoot-modal" id="modal-1">
@@ -38,7 +38,8 @@ export const Signup = () => {
                                     setFieldErrors,
                                     setCurrentUser,
                                     navigate,
-                                    setIsLoading
+                                    setIsLoading,
+                                    setToastMessage
                                 )
                             }
                         >

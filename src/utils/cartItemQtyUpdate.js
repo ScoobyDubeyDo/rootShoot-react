@@ -4,7 +4,8 @@ export const cartItemQtyUpdate = async (
     action,
     productId,
     setCart,
-    setIsLoading
+    setIsLoading,
+    setToastMessage
 ) => {
     try {
         setIsLoading(true);
@@ -25,7 +26,10 @@ export const cartItemQtyUpdate = async (
             setCart(res.data.cart);
         }
     } catch (err) {
-        console.log(err, `Error while adding the product to ${action}`);
+        setToastMessage({
+            type: "red",
+            text: err.message,
+        });
     } finally {
         setIsLoading(false);
     }

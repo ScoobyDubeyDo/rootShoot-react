@@ -9,7 +9,7 @@ import {
     ProductProvider,
     FilterProvider,
     AuthProvider,
-    LoaderProvider,
+    LoaderAndToastProvider,
     WishlistAndCartProvider,
 } from "./context";
 
@@ -18,7 +18,7 @@ makeServer();
 
 ReactDOM.render(
     <React.StrictMode>
-        <LoaderProvider>
+        <LoaderAndToastProvider>
             <ProductProvider>
                 <FilterProvider>
                     <AuthProvider>
@@ -32,7 +32,7 @@ ReactDOM.render(
                     </AuthProvider>
                 </FilterProvider>
             </ProductProvider>
-        </LoaderProvider>
+        </LoaderAndToastProvider>
     </React.StrictMode>,
     document.getElementById("root")
 );

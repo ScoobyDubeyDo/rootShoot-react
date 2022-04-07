@@ -1,7 +1,11 @@
 import { IoMdClose } from "react-icons/io";
 import { MdOutlineDelete } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import { useAuth, useWishlistAndCart, useLoader } from "../../../context";
+import {
+    useAuth,
+    useWishlistAndCart,
+    useLoaderOrToast,
+} from "../../../context";
 import {
     deleteFromCartOrWishlist,
     cartItemQtyUpdate,
@@ -11,7 +15,7 @@ export const CartWishCard = ({ product, cardType }) => {
     const { name, imgUrl, type, price, _id, qty } = product;
     const { setWishlist, setCart, wishlist, cart } = useWishlistAndCart();
     const { currentUser } = useAuth();
-    const { setIsLoading } = useLoader();
+    const { setIsLoading, setToastMessage } = useLoaderOrToast();
     const navigate = useNavigate();
 
     return (
@@ -31,7 +35,8 @@ export const CartWishCard = ({ product, cardType }) => {
                                 "cart",
                                 product,
                                 setCart,
-                                setIsLoading
+                                setIsLoading,
+                                setToastMessage
                             );
                         }
                     }
@@ -41,7 +46,8 @@ export const CartWishCard = ({ product, cardType }) => {
                                 "wishlist",
                                 product,
                                 setWishlist,
-                                setIsLoading
+                                setIsLoading,
+                                setToastMessage
                             );
                         }
                     }
@@ -77,13 +83,15 @@ export const CartWishCard = ({ product, cardType }) => {
                                                   "cart",
                                                   product,
                                                   setCart,
-                                                  setIsLoading
+                                                  setIsLoading,
+                                                  setToastMessage
                                               )
                                             : cartItemQtyUpdate(
                                                   "decrement",
                                                   _id,
                                                   setCart,
-                                                  setIsLoading
+                                                  setIsLoading,
+                                                  setToastMessage
                                               );
                                     }}
                                 >
@@ -98,7 +106,8 @@ export const CartWishCard = ({ product, cardType }) => {
                                             "increment",
                                             _id,
                                             setCart,
-                                            setIsLoading
+                                            setIsLoading,
+                                            setToastMessage
                                         );
                                     }}
                                 >
@@ -121,7 +130,8 @@ export const CartWishCard = ({ product, cardType }) => {
                                         setIsLoading,
                                         cart,
                                         wishlist,
-                                        _id
+                                        _id,
+                                        setToastMessage
                                     );
                                 }}
                             >
@@ -143,21 +153,43 @@ function moveToWishlistOrCart(
     setIsLoading,
     cart,
     wishlist,
-    _id
+    _id,
+    setToastMessage
 ) {
     deleteFromCartOrWishlist(
         cardType === "cart" ? "cart" : "wishlist",
         product,
         cardType === "cart" ? setCart : setWishlist,
-        setIsLoading
+        setIsLoading,
+        setToastMessage
     );
     if (cardType === "cart" && !wishlist.some((item) => item._id === _id)) {
-        addToCartOrWishlist("wishlist", product, setWishlist, setIsLoading);
+        addToCartOrWishlist(
+            "wishlist",
+            product,
+            setWishlist,
+            setIsLoading,
+            setToastMessage
+        );
     }
 
     if (cardType === "wishlist") {
         !cart.some((item) => item._id === _id)
-            ? addToCartOrWishlist("cart", product, setCart, setIsLoading)
-            : cartItemQtyUpdate("increment", _id, setCart, setIsLoading);
+            ? addToCartOrWishlist(
+                  "cart",
+                  product,
+                  setCart,
+                  setIsLoading,
+                  setToastMessage,
+                  setToastMessage
+              )
+            : cartItemQtyUpdate(
+                  "increment",
+                  _id,
+                  setCart,
+                  setIsLoading,
+                  setToastMessage,
+                  setToastMessage
+              );
     }
 }
