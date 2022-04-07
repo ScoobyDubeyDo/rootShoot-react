@@ -12,3 +12,5 @@ export { deleteFromCartOrWishlist } from "./deleteFromCartOrWishlist";
 export { userSignout } from "./userSignout";
 export { searchProducts } from "./searchProducts";
 export { cartItemQtyUpdate } from "./cartItemQtyUpdate";
+export { displayRazorpay } from "./paymentGateway";
+export { availableCoupons } from "./availableCoupons";
