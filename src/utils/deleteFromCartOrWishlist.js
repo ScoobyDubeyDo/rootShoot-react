@@ -4,7 +4,8 @@ export const deleteFromCartOrWishlist = async (
     type,
     product,
     setType,
-    setIsLoading
+    setIsLoading,
+    setToastMessage
 ) => {
     try {
         setIsLoading(true);
@@ -15,9 +16,16 @@ export const deleteFromCartOrWishlist = async (
         });
         if (res.status === 200) {
             setType(res.data[type]);
+            setToastMessage({
+                type: "green",
+                text: `Product removed from ${type}`,
+            });
         }
     } catch (err) {
-        console.log(err, `Error while deleting the product from ${type}`);
+        setToastMessage({
+            type: "red",
+            text: err.message,
+        });
     } finally {
         setIsLoading(false);
     }

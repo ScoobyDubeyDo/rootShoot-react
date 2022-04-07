@@ -3,14 +3,14 @@ import { FaFilter } from "react-icons/fa";
 import "./products.css";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useFilter, useLoader } from "../../context";
+import { useFilter, useLoaderOrToast } from "../../context";
 import axios from "axios";
 
 export const Products = () => {
     const [mobileFilterShow, setMobileFilterShow] = useState(false);
     const { categoryId } = useParams();
     const navigate = useNavigate();
-    const { setIsLoading } = useLoader();
+    const { setIsLoading, setToastMessage } = useLoaderOrToast();
     const { filterDispatch } = useFilter();
 
     useEffect(() => {
@@ -32,7 +32,10 @@ export const Products = () => {
                         navigate("/products", { replace: true });
                     }
                 } catch (err) {
-                    console.log("Error while getting the category name", err);
+                    setToastMessage({
+                        type: "red",
+                        text: err.message,
+                    });
                 } finally {
                     setIsLoading(false);
                 }

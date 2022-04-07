@@ -4,7 +4,8 @@ export const addToCartOrWishlist = async (
     type,
     product,
     setType,
-    setIsLoading
+    setIsLoading,
+    setToastMessage
 ) => {
     try {
         setIsLoading(true);
@@ -21,9 +22,16 @@ export const addToCartOrWishlist = async (
         );
         if (res.status === 201) {
             setType(res.data[type]);
+            setToastMessage({
+                type: "green",
+                text: `Added the plant to ${type}`,
+            });
         }
     } catch (err) {
-        console.log(err, `Error while adding the product to ${type}`);
+        setToastMessage({
+            type: "red",
+            text: err.message,
+        });
     } finally {
         setIsLoading(false);
     }

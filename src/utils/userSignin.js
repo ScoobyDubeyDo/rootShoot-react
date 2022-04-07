@@ -8,7 +8,8 @@ export const userSignin = async (
     setFieldErrors,
     setCurrentUser,
     navigate,
-    setIsLoading
+    setIsLoading,
+    setToastMessage
 ) => {
     e.preventDefault();
     if (formValidate(email, password, setFieldErrors)) {
@@ -26,9 +27,16 @@ export const userSignin = async (
                     });
                     localStorage.setItem("token", res.data.encodedToken);
                     navigate("/");
+                    setToastMessage({
+                        type: "blue",
+                        text: "Signed in",
+                    });
                 }
             } catch (err) {
-                console.log("Error while logging in", err);
+                setToastMessage({
+                    type: "red",
+                    text: err.message,
+                });
             } finally {
                 setIsLoading(false);
             }

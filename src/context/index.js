@@ -5,4 +5,7 @@ export {
     useWishlistAndCart,
     WishlistAndCartProvider,
 } from "./wishlistAndCart/wishlistAndCart-context";
-export { useLoader, LoaderProvider } from "./loader/loader-context";
+export {
+    useLoaderOrToast,
+    LoaderAndToastProvider,
+} from "./loader/loader-context";

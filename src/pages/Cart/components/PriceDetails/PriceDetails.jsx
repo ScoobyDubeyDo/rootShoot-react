@@ -1,6 +1,10 @@
 import { IoPricetagsSharp } from "react-icons/io5";
 import { useState } from "react";
-import { useWishlistAndCart, useAuth } from "../../../../context";
+import {
+    useWishlistAndCart,
+    useAuth,
+    useLoaderOrToast,
+} from "../../../../context";
 import { displayRazorpay } from "../../../../utils";
 import { CouponsModal } from "../CouponsModal/CouponsModal";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 export const PriceDetails = () => {
     const { cart, setCart } = useWishlistAndCart();
     const { currentUser } = useAuth();
+    const { setToastMessage } = useLoaderOrToast();
     const [couponModal, setCouponModal] = useState(false);
     const navigate = useNavigate();
     const [couponDiscount, setCouponDiscount] = useState(0);
@@ -81,7 +86,8 @@ export const PriceDetails = () => {
                                 totalMRP,
                                 navigate,
                                 setCart,
-                                setCouponDiscount
+                                setCouponDiscount,
+                                setToastMessage
                             )
                         }
                         className="btn-filled-green rootShoot-full-width text-align-center"

@@ -1,17 +1,20 @@
 import { createContext, useContext, useState } from "react";
 
-const LoaderContext = createContext();
+const LoaderAndToastContext = createContext();
 
-const LoaderProvider = ({ children }) => {
+const LoaderAndToastProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(false);
+    const [toastMessage, setToastMessage] = useState({ type: "", text: "" });
 
     return (
-        <LoaderContext.Provider value={{ isLoading, setIsLoading }}>
+        <LoaderAndToastContext.Provider
+            value={{ isLoading, setIsLoading, toastMessage, setToastMessage }}
+        >
             {children}
-        </LoaderContext.Provider>
+        </LoaderAndToastContext.Provider>
     );
 };
 
-const useLoader = () => useContext(LoaderContext);
+const useLoaderOrToast = () => useContext(LoaderAndToastContext);
 
-export { LoaderProvider, useLoader };
+export { LoaderAndToastProvider as LoaderAndToastProvider, useLoaderOrToast };

@@ -9,7 +9,8 @@ export const userSignup = async (
     setFieldErrors,
     setCurrentUser,
     navigate,
-    setIsLoading
+    setIsLoading,
+    setToastMessage
 ) => {
     e.preventDefault();
     if (formValidate(email, password, setFieldErrors, name)) {
@@ -28,9 +29,16 @@ export const userSignup = async (
                     });
                     localStorage.setItem("token", res.data.encodedToken);
                     navigate("/");
+                    setToastMessage({
+                        type: "blue",
+                        text: "Signed up",
+                    });
                 }
             } catch (err) {
-                console.log("Error while signing up", err);
+                setToastMessage({
+                    type: "red",
+                    text: err.message,
+                });
             } finally {
                 setIsLoading(false);
             }

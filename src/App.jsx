@@ -10,16 +10,19 @@ import {
     FourOFour,
     UserProfile,
 } from "./pages";
-import { Navbar, Footer, PrivateRoute, Spinner } from "./components";
-import { useLoader } from "./context";
+import { Navbar, Footer, PrivateRoute, Spinner, Toast } from "./components";
+import { useLoaderOrToast } from "./context";
 import { ItemDetails, PriceDetails } from "./pages/Cart/components";
 
 function App() {
-    const { isLoading } = useLoader();
+    const { isLoading, toastMessage } = useLoaderOrToast();
 
     return (
         <>
             {isLoading && <Spinner />}
+            {Object.values(toastMessage).every((e) => e) && (
+                <Toast text={toastMessage.text} type={toastMessage.type} />
+            )}
             <Navbar />
             <Routes>
                 <Route path="*" element={<FourOFour />} />
