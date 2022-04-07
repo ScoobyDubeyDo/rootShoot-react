@@ -33,11 +33,21 @@
     z-index: 3;
 }
 
+.price-coupon-remove {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+}
+
+.price-coupon-remove p:last-child {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 .cart-bill input[placeholder="Coupon Code"] {
     border: solid 1px var(--primary-text-color);
     border-radius: 10em;
     padding: 0.2rem 0.5rem;
-    margin-bottom: 0.5rem;
 }
 
 @media (min-width: 900px) {
