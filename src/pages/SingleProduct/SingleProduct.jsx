@@ -60,7 +60,11 @@ export const SingleProduct = () => {
                             className="icon-btn-green"
                             onClick={() =>
                                 !currentUser?.encodedToken
-                                    ? navigate("/sign-in")
+                                    ? navigate("/sign-in", {
+                                          state: {
+                                              from: location.pathname,
+                                          },
+                                      })
                                     : addToCartOrWishlist(
                                           "wishlist",
                                           productDetails,
@@ -118,7 +122,12 @@ export const SingleProduct = () => {
                                       setToastMessage
                                   )
                                 : navigate("/cart");
-                        } else navigate("/sign-in");
+                        } else
+                            navigate("/sign-in", {
+                                state: {
+                                    from: location.pathname,
+                                },
+                            });
                     }}
                     className="btn-outlined-green rootShoot-full-width text-gutterBottom"
                 >

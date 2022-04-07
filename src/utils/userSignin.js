@@ -9,7 +9,8 @@ export const userSignin = async (
     setCurrentUser,
     navigate,
     setIsLoading,
-    setToastMessage
+    setToastMessage,
+    location
 ) => {
     e.preventDefault();
     if (formValidate(email, password, setFieldErrors)) {
@@ -26,7 +27,8 @@ export const userSignin = async (
                         ...res.data.foundUser,
                     });
                     localStorage.setItem("token", res.data.encodedToken);
-                    navigate("/");
+                    console.log(location, "hasjk");
+                    navigate(location || "/", { replace: true });
                     setToastMessage({
                         type: "blue",
                         text: "Signed in",

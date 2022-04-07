@@ -1,12 +1,13 @@
 import { useRef, useState } from "react";
 import { useAuth, useLoaderOrToast } from "../../context";
 import { userSignin } from "../../utils";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 export const Signin = () => {
     const emailRef = useRef();
     const passwordRef = useRef();
     const navigate = useNavigate();
+    const location = useLocation();
     const [fieldErrors, setFieldErrors] = useState({});
     const { setCurrentUser } = useAuth();
     const { setIsLoading, setToastMessage } = useLoaderOrToast();
@@ -23,6 +24,7 @@ export const Signin = () => {
                                 <p key={Math.random()}>{e}</p>
                             ))}
                         </div>
+                        {console.log(location?.state?.from)}
                         <form
                             autoComplete="off"
                             noValidate
@@ -35,7 +37,8 @@ export const Signin = () => {
                                     setCurrentUser,
                                     navigate,
                                     setIsLoading,
-                                    setToastMessage
+                                    setToastMessage,
+                                    location?.state?.from
                                 )
                             }
                         >
@@ -93,7 +96,8 @@ export const Signin = () => {
                                         setCurrentUser,
                                         navigate,
                                         setIsLoading,
-                                        setToastMessage
+                                        setToastMessage,
+                                        location?.state?.from
                                     )
                                 }
                             />

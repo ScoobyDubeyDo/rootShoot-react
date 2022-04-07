@@ -1,6 +1,6 @@
 import "./productCard.css";
 import { FaStar } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { addToCartOrWishlist } from "../../../utils";
 import {
     useWishlistAndCart,
@@ -9,6 +9,7 @@ import {
 } from "../../../context";
 export const ProductCard = ({ cardType, product, title }) => {
     const navigate = useNavigate();
+    const location = useLocation();
     const { cart, wishlist, setWishlist, setCart } = useWishlistAndCart();
     const { currentUser } = useAuth();
     const { setIsLoading, setToastMessage } = useLoaderOrToast();
@@ -91,7 +92,12 @@ export const ProductCard = ({ cardType, product, title }) => {
                                                       "I will add this feature in future"
                                                   )
                                                 : navigate("/cart");
-                                        } else navigate("/sign-in");
+                                        } else
+                                            navigate("/sign-in", {
+                                                state: {
+                                                    from: location.pathname,
+                                                },
+                                            });
                                     }}
                                     className="btn-filled-green rootShoot-full-width text-align-center"
                                 >
@@ -116,7 +122,12 @@ export const ProductCard = ({ cardType, product, title }) => {
                                                       setToastMessage
                                                   )
                                                 : navigate("/wishlist");
-                                        } else navigate("/sign-in");
+                                        } else
+                                            navigate("/sign-in", {
+                                                state: {
+                                                    from: location.pathname,
+                                                },
+                                            });
                                     }}
                                     className="btn-outlined-green rootShoot-full-width text-align-center"
                                 >

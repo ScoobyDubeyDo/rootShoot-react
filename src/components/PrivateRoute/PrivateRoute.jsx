@@ -1,7 +1,8 @@
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useAuth } from "../../context";
 
 export const PrivateRoute = ({ switchPath = true }) => {
+    const location = useLocation();
     const { currentUser } = useAuth();
 
     if (switchPath) {
@@ -14,6 +15,6 @@ export const PrivateRoute = ({ switchPath = true }) => {
     return !currentUser?.encodedToken ? (
         <Outlet />
     ) : (
-        <Navigate to="/" replace />
+        <Navigate to={location?.state?.from || "/"} replace />
     );
 };

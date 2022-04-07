@@ -1,1 +1,2 @@
-export { default as useLockBodyScroll } from "./useLockBodyScroll";
+export { useLockBodyScroll } from "./useLockBodyScroll";
+export { useOnClickOutside } from "./useOnClickOutside";
