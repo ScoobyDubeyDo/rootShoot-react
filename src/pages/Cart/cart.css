@@ -45,9 +45,10 @@
 }
 
 .cart-bill input[placeholder="Coupon Code"] {
-    border: solid 1px var(--primary-text-color);
-    border-radius: 10em;
+    border: solid 1px var(--primary-bg-color);
+    border-radius: 5px;
     padding: 0.2rem 0.5rem;
+    outline: transparent;
 }
 
 @media (min-width: 900px) {

@@ -1,12 +1,18 @@
 import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
 import { useFilter } from "../../../context";
+import { useOnClickOutside } from "../../../hooks";
 
 export const SearchResults = ({ searchOpen, setSearchOpen }) => {
     const { filterState } = useFilter();
     const navigate = useNavigate();
+    const searchResultsRef = useRef();
+
+    useOnClickOutside(searchResultsRef, () => setSearchOpen(false));
 
     return (
         <div
+            ref={searchResultsRef}
             className={`search-results vertical-list ${
                 filterState.searchResults.length > 0 &&
                 searchOpen &&

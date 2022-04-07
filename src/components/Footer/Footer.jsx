@@ -4,18 +4,19 @@ import { VscGithub } from "react-icons/vsc";
 import { AiOutlineInstagram } from "react-icons/ai";
 import { RiTwitterLine } from "react-icons/ri";
 import { FiLinkedin } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 export const Footer = () => {
     return (
         <footer className="vertical-list">
             <div className="vertical-list sub-footer">
-                <span>
+                <Link to="/">
                     <img
                         src={imgLogo}
                         className="responsive-image"
                         alt="logo"
                     />
-                </span>
+                </Link>
                 <span className="horizontal-list footer-text">
                     <span className="vertical-list">
                         <p className="heading-6">Quick Links</p>

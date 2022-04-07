@@ -12,6 +12,10 @@
     overflow-x: hidden;
 }
 
+::selection{
+    background-color: var(--primary-bg-color);
+}
+
 ::-webkit-scrollbar {
     width: 0.3rem;
 }

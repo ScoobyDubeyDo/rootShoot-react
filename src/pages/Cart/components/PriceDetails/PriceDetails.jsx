@@ -39,7 +39,10 @@ export const PriceDetails = () => {
                 <label>
                     <IoPricetagsSharp />
                     <input
-                        onFocus={() => setCouponModal(true)}
+                        onFocus={(e) => {
+                            e.target.blur();
+                            setCouponModal(true);
+                        }}
                         type="text"
                         placeholder="Coupon Code"
                     />

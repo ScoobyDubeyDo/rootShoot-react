@@ -1,8 +1,8 @@
 import { useLoaderOrToast } from "../../context";
+import "./toast.css";
 
 export const Toast = ({ type, text }) => {
     const { setToastMessage } = useLoaderOrToast();
-
     setTimeout(() => {
         setToastMessage({
             text: "",

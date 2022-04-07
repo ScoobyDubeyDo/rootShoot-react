@@ -8,7 +8,7 @@ footer {
     align-items: unset;
 }
 
-footer > div > span:first-child {
+footer > div > a:first-child {
     margin: 0 auto;
     width: 5rem;
 }
@@ -38,7 +38,7 @@ footer > div > span:first-child {
         justify-content: space-evenly;
     }
 
-    footer > div > span:first-child {
+    footer > div > a:first-child {
         margin: unset;
     }
 }

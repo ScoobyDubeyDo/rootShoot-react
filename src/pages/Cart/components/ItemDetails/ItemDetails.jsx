@@ -13,7 +13,7 @@ export const ItemDetails = () => {
                     })`}
                 </h3>
             </div>
-            <hr />
+            <div className="divider-dark-horizontal" />
             <div className="card-body">
                 <div className="card-text text-gutterBottom">
                     <div className="heading-6 cart-price-pair">
@@ -32,15 +32,15 @@ export const ItemDetails = () => {
                         </div>
                     ))}
                 </div>
-                <hr />
+                <div className="divider-dark-horizontal" />
                 <div className="card-actions">
                     <Link
                         to="price-details"
                         className="btn-filled-green rootShoot-link-reset rootShoot-full-width text-align-center"
                     >
-                        proceed to Check Out
+                        proceed to Checkout
                     </Link>
-                    <hr />
+                    <div className="divider-dark-horizontal" />
                     <button className="btn-outlined-green rootShoot-link-reset rootShoot-full-width text-align-center">
                         share your cart
                     </button>

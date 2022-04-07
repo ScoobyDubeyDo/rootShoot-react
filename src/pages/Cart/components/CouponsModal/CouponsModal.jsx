@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { GrClose } from "react-icons/gr";
-import { useLockBodyScroll } from "../../../../hooks";
+import { useLockBodyScroll, useOnClickOutside } from "../../../../hooks";
 import { availableCoupons } from "../../../../utils";
 import "./couponsModal.css";
 
@@ -11,6 +11,7 @@ export const CouponsModal = ({
 }) => {
     const [couponInput, setCouponInput] = useState("");
     const [notApplicable, setNotApplicable] = useState(false);
+    const couponsModalRef = useRef();
     const availableCouponsLength = availableCoupons.filter(
         (coupon) => coupon.minimumPrice <= totalMRP
     );
@@ -44,12 +45,13 @@ export const CouponsModal = ({
     };
 
     useLockBodyScroll();
+    useOnClickOutside(couponsModalRef, () => setCouponModal(false));
 
     return (
         <div className="modal-sm">
-            <div className="modal-dialog">
+            <div className="modal-dialog" ref={couponsModalRef}>
                 <div className="modal-content">
-                    <div className="modal-header">
+                    <div className="modal-header coupon-modal-header">
                         <h1 className="modal-title heading-5">APPLY COUPON</h1>
                         <button
                             onClick={() => setCouponModal(false)}
@@ -62,8 +64,12 @@ export const CouponsModal = ({
                         <input
                             type="text"
                             placeholder="Coupon Code"
+                            id="coupon-input"
                             value={couponInput}
                             onChange={(e) => setCouponInput(e.target.value)}
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter") applyCoupon();
+                            }}
                         />
                         <button
                             onClick={() => applyCoupon()}

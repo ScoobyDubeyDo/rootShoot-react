@@ -13,6 +13,21 @@
     padding: 0.5rem;
 }
 
+.coupon-code-wrapper-notapplicable {
+    filter: grayscale(90%) opacity(59%);
+}
+
+.cart-bill input[placeholder="Coupon Code"]#coupon-input{
+    width: 70%;
+    height: 2rem;
+    border-color: var(--accent-color);
+}
+
+.coupon-modal-header {
+    background: var(--primary-bg-color);
+    border-radius: inherit;
+}
+
 .coupon-code-wrapper:hover {
     cursor: pointer;
     background-color: #f0f0f0;
