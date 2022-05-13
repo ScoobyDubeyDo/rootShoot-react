@@ -1,4 +1,4 @@
-import { useProduct } from "../../../../context";
+import { useFilter, useProduct } from "../../../../context";
 import {
     FilterClear,
     PriceSlider,
@@ -12,10 +12,15 @@ import { stars, sortTypes } from "../../../../utils";
 export const FilterBox = ({ mobileFilterShow, setMobileFilterShow }) => {
     const { categories: categoriesObjArr } = useProduct();
     const categories = categoriesObjArr.map((type) => type.categoryName);
+    const { filterState } = useFilter();
 
     return (
         <div className={`filter-box ${mobileFilterShow && "filter-box-show"}`}>
             <div>
+                <p className="heading-6">
+                    Products showing: {filterState.products.length}
+                </p>
+                <div className="divider-dark-horizontal" />
                 <FilterClear />
                 <PriceSlider />
                 <TypesCheckbox categoriesArray={categories} />

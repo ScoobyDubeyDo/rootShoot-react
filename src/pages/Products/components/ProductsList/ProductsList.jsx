@@ -17,7 +17,10 @@ export const ProductsList = () => {
                     ))}
                 </CardLayout>
             ) : (
-                <EmptyPageHolder size={300} />
+                <div className="flex-center vertical-list">
+                    <EmptyPageHolder size={300} />
+                    <p className="heading-4">No products found</p>
+                </div>
             )}
         </>
     );
