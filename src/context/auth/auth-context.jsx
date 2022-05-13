@@ -5,6 +5,8 @@ const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState({
         encodedToken: localStorage.getItem("token") ?? "",
+        fullName: localStorage.getItem("fullName") ?? "",
+        email: localStorage.getItem("email") ?? "",
     });
 
     return (

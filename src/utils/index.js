@@ -14,3 +14,5 @@ export { searchProducts } from "./searchProducts";
 export { cartItemQtyUpdate } from "./cartItemQtyUpdate";
 export { displayRazorpay } from "./paymentGateway";
 export { availableCoupons } from "./availableCoupons";
+export { getAvatarLetter } from "./getAvatarLetter";
+export { clearCart } from "./clearCart";

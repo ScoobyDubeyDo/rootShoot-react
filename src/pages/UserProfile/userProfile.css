@@ -1,6 +1,5 @@
 .user-profile-img {
-    min-width: 10rem;
-    min-height: 10rem;
+    background: var(--primary-bg-color);
 }
 
 @media (min-width: 600px) {

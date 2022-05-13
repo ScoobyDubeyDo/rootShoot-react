@@ -24,7 +24,6 @@ export const Signin = () => {
                                 <p key={Math.random()}>{e}</p>
                             ))}
                         </div>
-                        {console.log(location?.state?.from)}
                         <form
                             autoComplete="off"
                             noValidate

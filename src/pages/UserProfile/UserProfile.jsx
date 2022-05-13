@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAuth, useWishlistAndCart } from "../../context";
-import { userSignout } from "../../utils";
+import { getAvatarLetter, userSignout } from "../../utils";
 import "./userProfile.css";
 
 export const UserProfile = () => {
@@ -18,11 +18,9 @@ export const UserProfile = () => {
                         <h1 className="modal-title heading-4">Profile</h1>
                     </div>
                     <div className="modal-body">
-                        <img
-                            className="avatar-circle-lg rootShoot-margin-center user-profile-img "
-                            src="https://www.serieslike.com/images/karishma-kaa-karishma.webp"
-                            alt="avatar"
-                        />
+                        <div className="avatar-circle-lg margin-auto heading-4 user-profile-img  flex-center ">
+                            {getAvatarLetter(fullName)}
+                        </div>
                         <div className="text-gutterTop">
                             <p className="heading-6 text-gutterBottom">
                                 Display Name: {fullName}

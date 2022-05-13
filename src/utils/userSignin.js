@@ -27,7 +27,6 @@ export const userSignin = async (
                         ...res.data.foundUser,
                     });
                     localStorage.setItem("token", res.data.encodedToken);
-                    console.log(location, "hasjk");
                     navigate(location || "/", { replace: true });
                     setToastMessage({
                         type: "blue",

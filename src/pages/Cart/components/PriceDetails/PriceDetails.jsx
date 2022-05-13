@@ -5,7 +5,7 @@ import {
     useAuth,
     useLoaderOrToast,
 } from "../../../../context";
-import { displayRazorpay } from "../../../../utils";
+import { clearCart as empty, displayRazorpay } from "../../../../utils";
 import { CouponsModal } from "../CouponsModal/CouponsModal";
 import { useNavigate } from "react-router-dom";
 
@@ -24,6 +24,8 @@ export const PriceDetails = () => {
     const deliveryCharge = 199;
 
     const totalMRP = totalPrice - couponDiscount + deliveryCharge;
+
+    const clearCart = () => empty(cart, setCart, setToastMessage);
 
     return (
         <div className="card">
@@ -88,7 +90,7 @@ export const PriceDetails = () => {
                                 currentUser,
                                 totalMRP,
                                 navigate,
-                                setCart,
+                                clearCart,
                                 setCouponDiscount,
                                 setToastMessage
                             )
