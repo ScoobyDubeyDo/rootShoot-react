@@ -1,7 +1,7 @@
 import "./productCard.css";
 import { FaStar } from "react-icons/fa";
 import { useNavigate, useLocation } from "react-router-dom";
-import { addToCartOrWishlist } from "../../../utils";
+import { addToCartOrWishlist, buyNow } from "../../../utils";
 import {
     useWishlistAndCart,
     useAuth,
@@ -88,8 +88,14 @@ export const ProductCard = ({ cardType, product, title }) => {
                                                 : wishlist.some(
                                                       (item) => item._id === _id
                                                   )
-                                                ? console.log(
-                                                      "I will add this feature in future"
+                                                ? buyNow(
+                                                      cart,
+                                                      product,
+                                                      setCart,
+                                                      setIsLoading,
+                                                      setToastMessage,
+                                                      navigate,
+                                                      currentUser
                                                   )
                                                 : navigate("/cart");
                                         } else

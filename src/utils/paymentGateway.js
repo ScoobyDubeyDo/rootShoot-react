@@ -36,7 +36,7 @@ export const displayRazorpay = async (
 
     const options = {
         key: "rzp_test_HYLYM5j2PvIow1",
-        amount: totalMRP * 100,
+        amount: Number(totalMRP) * 100,
         currency: "INR",
         name: "rootShoot",
         description: "You are one step closer",

@@ -16,3 +16,4 @@ export { displayRazorpay } from "./paymentGateway";
 export { availableCoupons } from "./availableCoupons";
 export { getAvatarLetter } from "./getAvatarLetter";
 export { clearCart } from "./clearCart";
+export { buyNow } from "./buyNow";

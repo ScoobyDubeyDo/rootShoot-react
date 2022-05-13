@@ -4,7 +4,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useLoaderOrToast, useWishlistAndCart, useAuth } from "../../context";
 import { BsFillBookmarkHeartFill, BsBookmarkHeart } from "react-icons/bs";
-import { addToCartOrWishlist, deleteFromCartOrWishlist } from "../../utils";
+import {
+    addToCartOrWishlist,
+    deleteFromCartOrWishlist,
+    buyNow,
+} from "../../utils";
 
 export const SingleProduct = () => {
     const { productId } = useParams();
@@ -102,9 +106,17 @@ export const SingleProduct = () => {
                     </p>
                 ))}
                 <button
-                    onClick={() =>
-                        console.log("I will add this feature in future")
-                    }
+                    onClick={() => {
+                        buyNow(
+                            cart,
+                            productDetails,
+                            setCart,
+                            setIsLoading,
+                            setToastMessage,
+                            navigate,
+                            currentUser
+                        );
+                    }}
                     className="btn-filled-green rootShoot-full-width text-gutterBottom"
                 >
                     buy now
