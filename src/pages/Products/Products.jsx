@@ -40,7 +40,7 @@ export const Products = () => {
                     setIsLoading(false);
                 }
             })();
-    }, []);
+    }, [filterDispatch, navigate, setToastMessage, setIsLoading, categoryId]);
 
     return (
         <div className="products-wrapper">

@@ -56,7 +56,7 @@ const WishlistAndCartProvider = ({ children }) => {
                 }
             })();
         }
-    }, [currentUser]);
+    }, [currentUser, setToastMessage, setIsLoading]);
 
     return (
         <WishlistAndCartContext.Provider

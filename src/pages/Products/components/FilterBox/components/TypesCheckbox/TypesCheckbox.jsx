@@ -6,7 +6,7 @@ export const TypesCheckbox = ({ categoriesArray }) => {
         return () => {
             filterDispatch({ type: "CLEAR" });
         };
-    }, []);
+    }, [filterDispatch]);
 
     return (
         <>

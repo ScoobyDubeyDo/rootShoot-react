@@ -41,7 +41,7 @@ const ProductProvider = ({ children }) => {
                 setIsLoading(false);
             }
         })();
-    }, []);
+    }, [setToastMessage, setIsLoading]);
 
     return (
         <ProductContext.Provider value={{ products, categories }}>

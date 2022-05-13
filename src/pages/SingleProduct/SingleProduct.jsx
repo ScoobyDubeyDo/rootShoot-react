@@ -43,7 +43,7 @@ export const SingleProduct = () => {
                 setIsLoading(false);
             }
         })();
-    }, [location.pathname]);
+    }, [location.pathname, setIsLoading, setToastMessage]);
 
     return (
         <div className="single-product">

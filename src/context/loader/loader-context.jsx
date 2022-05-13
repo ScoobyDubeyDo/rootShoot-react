@@ -17,4 +17,4 @@ const LoaderAndToastProvider = ({ children }) => {
 
 const useLoaderOrToast = () => useContext(LoaderAndToastContext);
 
-export { LoaderAndToastProvider as LoaderAndToastProvider, useLoaderOrToast };
+export { LoaderAndToastProvider, useLoaderOrToast };
