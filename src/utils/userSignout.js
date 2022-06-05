@@ -1,6 +1,6 @@
-export const userSignout = (callBack) => {
+export const userSignout = callBack => {
     if (localStorage.getItem("token")) {
-        localStorage.removeItem("token");
+        localStorage.clear();
         callBack({});
     }
 };

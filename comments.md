@@ -4,4 +4,6 @@
 -   Added 16 new products
 -   Added a new debounce hook
 -   made search results debounce
+-   saved user details in localstorage
+-   removed "forgot password button"
 -

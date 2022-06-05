@@ -28,6 +28,11 @@ export const userSignup = async (
                         ...res.data.createdUser,
                     });
                     localStorage.setItem("token", res.data.encodedToken);
+                    localStorage.setItem(
+                        "fullName",
+                        res.data.createdUser.fullName
+                    );
+                    localStorage.setItem("email", res.data.createdUser.email);
                     navigate("/");
                     setToastMessage({
                         type: "blue",

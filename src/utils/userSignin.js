@@ -27,6 +27,11 @@ export const userSignin = async (
                         ...res.data.foundUser,
                     });
                     localStorage.setItem("token", res.data.encodedToken);
+                    localStorage.setItem(
+                        "fullName",
+                        res.data.foundUser.fullName
+                    );
+                    localStorage.setItem("email", res.data.foundUser.email);
                     navigate(location || "/", { replace: true });
                     setToastMessage({
                         type: "blue",
