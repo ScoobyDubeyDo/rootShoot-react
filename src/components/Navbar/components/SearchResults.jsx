@@ -14,21 +14,17 @@ export const SearchResults = ({ searchOpen, setSearchOpen }) => {
         <div
             ref={searchResultsRef}
             className={`search-results vertical-list ${
-                filterState.searchResults.length > 0 &&
-                searchOpen &&
-                "search-results-show"
-            }`}
-        >
-            {filterState.searchResults.length > 0 &&
-                filterState.searchResults.map((item) => (
+                searchOpen && "search-results-show"
+            }`}>
+            {filterState.searchResults.length > 0 ? (
+                filterState.searchResults.map(item => (
                     <div
                         key={item._id}
                         className="card search-result"
                         onClick={() => {
                             setSearchOpen(false);
                             navigate(`/products/${item._id}`);
-                        }}
-                    >
+                        }}>
                         <div className="card-badge-green">{item.type[0]}</div>
                         <div className="card-body-horizontal">
                             <img
@@ -44,7 +40,10 @@ export const SearchResults = ({ searchOpen, setSearchOpen }) => {
                             </div>
                         </div>
                     </div>
-                ))}
+                ))
+            ) : (
+                <div className="heading-4">No products found</div>
+            )}
         </div>
     );
 };

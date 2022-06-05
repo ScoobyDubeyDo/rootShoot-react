@@ -6,42 +6,50 @@ import { HiUser } from "react-icons/hi";
 import { BsFillBookmarkHeartFill } from "react-icons/bs";
 import { useWishlistAndCart, useFilter } from "../../context";
 import { RiMenu4Line } from "react-icons/ri";
-import { useState, useRef, useEffect } from "react";
-import { useLockBodyScroll } from "../../hooks";
+import { useState, useEffect } from "react";
+import { useDebounce, useLockBodyScroll } from "../../hooks";
 import { SearchResults } from "./components";
 
 export const Navbar = () => {
     const { wishlist, cart } = useWishlistAndCart();
     const [drawer, setDrawer] = useState(false);
-    const { filterState, filterDispatch } = useFilter();
+    const { filterDispatch } = useFilter();
     const [bodyLock, setBodyLock] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
-    const searchRef = useRef("");
+    const [searchText, setSearchText] = useState("");
     const location = useLocation();
     const navigate = useNavigate();
 
     useEffect(() => {
         if (location.pathname !== "/products") {
-            searchRef.current.value = "";
+            setSearchText("");
         }
         setSearchOpen(false);
     }, [location.pathname]);
+
+    const debouncedInput = useDebounce(searchText);
+
     useEffect(() => {
-        searchRef.current.value = filterState.searchText;
-    }, [filterState]);
+        valueChangeSearch(
+            searchText,
+            setSearchOpen,
+            filterDispatch,
+            debouncedInput
+        );
+    }, [debouncedInput, filterDispatch, searchText]);
 
     useLockBodyScroll(bodyLock);
     return (
         <>
+            {}
             <div className="appbar-fixed rootShoot-appbar">
                 <div className="appbar-menu rootShoot-appbar-menu">
                     <button
                         onClick={() => {
-                            setDrawer((prev) => !prev);
-                            setBodyLock((prev) => !prev);
+                            setDrawer(prev => !prev);
+                            setBodyLock(prev => !prev);
                         }}
-                        className="icon-btn-green"
-                    >
+                        className="icon-btn-green">
                         <RiMenu4Line size={20} />
                     </button>
                 </div>
@@ -62,12 +70,10 @@ export const Navbar = () => {
                             onClick={() => {
                                 setDrawer(false);
                                 setBodyLock(false);
-                            }}
-                        >
+                            }}>
                             <Link
                                 className="rootShoot-link-reset heading-6 text-noWrap"
-                                to="/"
-                            >
+                                to="/">
                                 Home
                             </Link>
                         </li>
@@ -75,12 +81,10 @@ export const Navbar = () => {
                             onClick={() => {
                                 setDrawer(false);
                                 setBodyLock(false);
-                            }}
-                        >
+                            }}>
                             <Link
                                 className="rootShoot-link-reset heading-6 text-noWrap"
-                                to="/products"
-                            >
+                                to="/products">
                                 Products
                             </Link>
                         </li>
@@ -89,12 +93,10 @@ export const Navbar = () => {
                             onClick={() => {
                                 setDrawer(false);
                                 setBodyLock(false);
-                            }}
-                        >
+                            }}>
                             <Link
                                 to="/profile"
-                                className="rootShoot-link-reset heading-6 text-noWrap"
-                            >
+                                className="rootShoot-link-reset heading-6 text-noWrap">
                                 Profile
                             </Link>
                         </li>
@@ -103,13 +105,11 @@ export const Navbar = () => {
                             onClick={() => {
                                 setDrawer(false);
                                 setBodyLock(false);
-                            }}
-                        >
+                            }}>
                             <div className="badge-container">
                                 <Link
                                     className="rootShoot-link-reset heading-6 text-noWrap"
-                                    to="/wishlist"
-                                >
+                                    to="/wishlist">
                                     wishlist
                                 </Link>
                                 {wishlist.length > 0 && (
@@ -126,8 +126,7 @@ export const Navbar = () => {
                         onClick={() => {
                             setDrawer(false);
                             setBodyLock(false);
-                        }}
-                    >
+                        }}>
                         <img
                             src={imgLogo}
                             alt="logo"
@@ -140,11 +139,11 @@ export const Navbar = () => {
                         type="search"
                         placeholder="Search"
                         className="rootShoot-search"
-                        ref={searchRef}
-                        onChange={(e) => {
-                            valueChangeSearch(e, setSearchOpen, filterDispatch);
+                        value={searchText}
+                        onChange={e => {
+                            setSearchText(e.target.value);
                         }}
-                        onKeyUp={(e) => {
+                        onKeyUp={e => {
                             keyPressSearch(
                                 e,
                                 location,
@@ -164,8 +163,7 @@ export const Navbar = () => {
                     <div className="badge-container rootShoot-shown ">
                         <Link
                             to="/wishlist"
-                            className="rootShoot-link-reset icon-btn-green"
-                        >
+                            className="rootShoot-link-reset icon-btn-green">
                             <BsFillBookmarkHeartFill size={18} />
                         </Link>
                         {wishlist.length > 0 && (
@@ -181,8 +179,7 @@ export const Navbar = () => {
                                 setBodyLock(false);
                             }}
                             to="cart"
-                            className="rootShoot-link-reset icon-btn-green"
-                        >
+                            className="rootShoot-link-reset icon-btn-green">
                             <FaShoppingCart size={19} />
                         </Link>
                         {cart.length > 0 && (
@@ -194,8 +191,7 @@ export const Navbar = () => {
                     <div className="badge-container rootShoot-shown ">
                         <Link
                             to="/profile"
-                            className="rootShoot-link-reset icon-btn-green"
-                        >
+                            className="rootShoot-link-reset icon-btn-green">
                             <HiUser size={22} />
                         </Link>
                     </div>
@@ -206,16 +202,21 @@ export const Navbar = () => {
     );
 };
 
-const valueChangeSearch = (e, setSearchOpen, filterDispatch) => {
-    if (e.target.value === "") {
+const valueChangeSearch = (
+    searchText,
+    setSearchOpen,
+    filterDispatch,
+    debouncedInput
+) => {
+    if (searchText === "" || searchText.includes(" ")) {
         setSearchOpen(false);
     } else {
         setSearchOpen(true);
-        e.target.value &&
+        !!searchText &&
             filterDispatch({
                 type: "SEARCH_TEXT",
                 payload: {
-                    searchText: e.target.value,
+                    searchText: debouncedInput,
                 },
             });
     }
