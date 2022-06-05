@@ -8,3 +8,5 @@
 -   removed "forgot password button"
 -   added autofocus on input fields
 -   removed "share your cart" button
+-   Fixed the product cards layout
+-   Added the missing image in payment gateway

@@ -43,8 +43,7 @@ export const SingleProduct = () => {
                 setIsLoading(false);
             }
         })();
-    }, [location.pathname, setIsLoading, setToastMessage]);
-
+    }, [location.pathname, setIsLoading, setToastMessage, productId]);
     return (
         <div className="single-product">
             <img
@@ -59,7 +58,7 @@ export const SingleProduct = () => {
                 </p>
                 <div>
                     <p className="heading-5">{`₹ ${productDetails.price}`}</p>
-                    {!wishlist.some((item) => item._id === productId) ? (
+                    {!wishlist.some(item => item._id === productId) ? (
                         <button
                             className="icon-btn-green"
                             onClick={() =>
@@ -76,8 +75,7 @@ export const SingleProduct = () => {
                                           setIsLoading,
                                           setToastMessage
                                       )
-                            }
-                        >
+                            }>
                             <BsBookmarkHeart />
                         </button>
                     ) : (
@@ -91,20 +89,20 @@ export const SingleProduct = () => {
                                     setIsLoading,
                                     setToastMessage
                                 )
-                            }
-                        >
+                            }>
                             <BsFillBookmarkHeartFill />
                         </button>
                     )}
                 </div>
-                {productDetails.prodDesc.map((text) => (
-                    <p
-                        key={text}
-                        className="text-body-lg rootShoot-text-align-justify text-gutterBottom"
-                    >
-                        {text}
-                    </p>
-                ))}
+                <div className="prod-desc">
+                    {productDetails.prodDesc.map(text => (
+                        <p
+                            key={text}
+                            className="text-body-lg rootShoot-text-align-justify text-gutterBottom">
+                            {text}
+                        </p>
+                    ))}
+                </div>
                 <button
                     onClick={() => {
                         buyNow(
@@ -117,15 +115,14 @@ export const SingleProduct = () => {
                             currentUser
                         );
                     }}
-                    className="btn-filled-green rootShoot-full-width text-gutterBottom"
-                >
+                    className="btn-filled-green rootShoot-full-width text-gutterBottom">
                     buy now
                 </button>
                 <button
-                    onClick={async (e) => {
+                    onClick={async e => {
                         e.stopPropagation();
                         if (currentUser?.encodedToken) {
-                            !cart.some((item) => item._id === productId)
+                            !cart.some(item => item._id === productId)
                                 ? addToCartOrWishlist(
                                       "cart",
                                       productDetails,
@@ -141,9 +138,8 @@ export const SingleProduct = () => {
                                 },
                             });
                     }}
-                    className="btn-outlined-green rootShoot-full-width text-gutterBottom"
-                >
-                    {!cart.some((item) => item._id === productId)
+                    className="btn-outlined-green rootShoot-full-width text-gutterBottom">
+                    {!cart.some(item => item._id === productId)
                         ? "Add to cart"
                         : "go to cart"}
                 </button>
