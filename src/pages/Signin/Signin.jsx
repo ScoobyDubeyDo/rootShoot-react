@@ -20,14 +20,14 @@ export const Signin = () => {
                     </div>
                     <div className="modal-body">
                         <div style={{ color: "red", textAlign: "center" }}>
-                            {Object.values(fieldErrors).map((e) => (
+                            {Object.values(fieldErrors).map(e => (
                                 <p key={Math.random()}>{e}</p>
                             ))}
                         </div>
                         <form
                             autoComplete="off"
                             noValidate
-                            onSubmit={(e) =>
+                            onSubmit={e =>
                                 userSignin(
                                     e,
                                     emailRef.current.value,
@@ -39,8 +39,7 @@ export const Signin = () => {
                                     setToastMessage,
                                     location?.state?.from
                                 )
-                            }
-                        >
+                            }>
                             <label htmlFor="email" className="input-label">
                                 Email
                                 <input
@@ -69,12 +68,6 @@ export const Signin = () => {
                                     {fieldErrors.password}
                                 </p>
                             </label>
-                            <Link
-                                to="#"
-                                className="btn-link rootShoot-text-capital text-body-sm text-gutterBottom text-align-center"
-                            >
-                                Forgot your Password ?
-                            </Link>
                             <input
                                 className="btn-filled-green rootShoot-margin-center text-align-center"
                                 type="submit"
@@ -86,7 +79,7 @@ export const Signin = () => {
                                 className="btn-filled-green rootShoot-margin-center text-align-center"
                                 type="reset"
                                 value="guest sign in"
-                                onClick={(e) =>
+                                onClick={e =>
                                     userSignin(
                                         e,
                                         "karishma@kaa.karishma",
@@ -105,8 +98,7 @@ export const Signin = () => {
                     <div className="modal-footer">
                         <Link
                             to="/sign-up"
-                            className="btn-link rootShoot-text-capital text-align-center"
-                        >
+                            className="btn-link rootShoot-text-capital text-align-center">
                             Create New Account
                         </Link>
                     </div>

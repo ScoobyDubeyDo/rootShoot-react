@@ -6,4 +6,5 @@
 -   made search results debounce
 -   saved user details in localstorage
 -   removed "forgot password button"
--
+-   added autofocus on input fields
+-   removed "share your cart" button

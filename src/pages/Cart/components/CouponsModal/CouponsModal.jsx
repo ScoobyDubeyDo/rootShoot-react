@@ -13,15 +13,15 @@ export const CouponsModal = ({
     const [notApplicable, setNotApplicable] = useState(false);
     const couponsModalRef = useRef();
     const availableCouponsLength = availableCoupons.filter(
-        (coupon) => coupon.minimumPrice <= totalMRP
+        coupon => coupon.minimumPrice <= totalMRP
     );
     const notAvailableCouponsLength = availableCoupons.filter(
-        (coupon) => coupon.minimumPrice > totalMRP
+        coupon => coupon.minimumPrice > totalMRP
     );
 
     const applyCoupon = () => {
         const temp = availableCoupons.find(
-            (item) => item.code.toLowerCase() === couponInput.toLowerCase()
+            item => item.code.toLowerCase() === couponInput.toLowerCase()
         );
 
         if (!temp) {
@@ -55,26 +55,25 @@ export const CouponsModal = ({
                         <h1 className="modal-title heading-5">APPLY COUPON</h1>
                         <button
                             onClick={() => setCouponModal(false)}
-                            className="icon-btn-ghost-sm modal-close-btn"
-                        >
+                            className="icon-btn-ghost-sm modal-close-btn">
                             <GrClose />
                         </button>
                     </div>
                     <div className="modal-header">
                         <input
+                            autoFocus
                             type="text"
                             placeholder="Coupon Code"
                             id="coupon-input"
                             value={couponInput}
-                            onChange={(e) => setCouponInput(e.target.value)}
-                            onKeyDown={(e) => {
+                            onChange={e => setCouponInput(e.target.value)}
+                            onKeyDown={e => {
                                 if (e.key === "Enter") applyCoupon();
                             }}
                         />
                         <button
                             onClick={() => applyCoupon()}
-                            className="btn-filled-green modal-close-btn"
-                        >
+                            className="btn-filled-green modal-close-btn">
                             Apply
                         </button>
                     </div>
@@ -87,7 +86,7 @@ export const CouponsModal = ({
                                 </p>
                             )}
                             {availableCoupons.map(
-                                (coupon) =>
+                                coupon =>
                                     coupon.minimumPrice <= totalMRP && (
                                         <div
                                             key={coupon.code}
@@ -95,8 +94,7 @@ export const CouponsModal = ({
                                             onClick={() => {
                                                 setCouponInput(coupon.code);
                                                 setNotApplicable("");
-                                            }}
-                                        >
+                                            }}>
                                             <p className="coupon-code">
                                                 {coupon.code}
                                             </p>
@@ -110,12 +108,11 @@ export const CouponsModal = ({
                                 </p>
                             )}
                             {availableCoupons.map(
-                                (coupon) =>
+                                coupon =>
                                     coupon.minimumPrice > totalMRP && (
                                         <div
                                             key={coupon.code}
-                                            className="coupon-code-wrapper-notapplicable"
-                                        >
+                                            className="coupon-code-wrapper-notapplicable">
                                             <p className="coupon-code">
                                                 {coupon.code}
                                             </p>

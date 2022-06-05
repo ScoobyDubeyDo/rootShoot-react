@@ -20,7 +20,7 @@ export const ItemDetails = () => {
                         <p>Name</p>
                         <p>Price</p>
                     </div>
-                    {cart.map((item) => (
+                    {cart.map(item => (
                         <div key={item._id} className="cart-price-pair">
                             <p>
                                 {item.name}
@@ -36,14 +36,9 @@ export const ItemDetails = () => {
                 <div className="card-actions">
                     <Link
                         to="price-details"
-                        className="btn-filled-green rootShoot-link-reset rootShoot-full-width text-align-center"
-                    >
+                        className="btn-filled-green rootShoot-link-reset rootShoot-full-width text-align-center">
                         proceed to Checkout
                     </Link>
-                    <div className="divider-dark-horizontal" />
-                    <button className="btn-outlined-green rootShoot-link-reset rootShoot-full-width text-align-center">
-                        share your cart
-                    </button>
                 </div>
             </div>
         </div>
