@@ -42,11 +42,11 @@ export const displayRazorpay = async (
 		description: "You are one step closer",
 		image: `https://rootshoot.vercel.app/favicon.png`,
 		handler: async function (response) {
+			await clearCart();
 			setToastMessage({
 				type: "green",
 				text: "The Payment was successfull !",
 			});
-			await clearCart();
 			navigate("/");
 			setCouponDiscount(0);
 		},
