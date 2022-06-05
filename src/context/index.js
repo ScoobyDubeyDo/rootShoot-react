@@ -1,11 +1,11 @@
-export { useProduct, ProductProvider } from "./product/product-context";
-export { useFilter, FilterProvider } from "./filter/filter-context";
-export { useAuth, AuthProvider } from "./auth/auth-context";
+export { AuthProvider, useAuth } from "./auth/auth-context";
+export { FilterProvider, useFilter } from "./filter/filter-context";
 export {
-    useWishlistAndCart,
-    WishlistAndCartProvider,
-} from "./wishlistAndCart/wishlistAndCart-context";
-export {
-    useLoaderOrToast,
-    LoaderAndToastProvider,
+	LoaderAndToastProvider,
+	useLoaderOrToast,
 } from "./loader/loader-context";
+export { ProductProvider, useProduct } from "./product/product-context";
+export {
+	WishlistAndCartProvider,
+	useWishlistAndCart,
+} from "./wishlistAndCart/wishlistAndCart-context";
